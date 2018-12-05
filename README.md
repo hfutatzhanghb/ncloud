@@ -1,2 +1,0 @@
-# ncloud
-just for fun
