@@ -1,0 +1,295 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%> 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="baidu-site-verification" content="wNCMVYkRvA" />
+<title>中国核安全科技领域云</title>
+<meta name="keywords" content="智慧园区,智慧产业园区,智慧园区规划,招商管理,文化园区规划,产业园区规划,智慧安防,园区招商,文化产业园区,园区规划方案,园区转型,物业管理,园区企业服务,能源管理,智慧楼宇,园区改造,智慧园区APP">
+<meta name="description" content="园圈,飞企园圈智慧园区,中国智慧园区解决方案领导品牌,全面规划打造文化园区、产业园区、工业园区的智慧转型方案,一站式实现园区招商,园区安防,物业管理,能源管理等多个功能。创新打造智慧园区运营管理云服务平台,提供完整全面的信息化服务及咨询,打造高效,和谐,人文的智慧园区.">
+
+<style>
+.comhead{ position: relative; left: -800px;}
+.combody{ position: relative; bottom: -50px; opacity: 0;}
+.yunzi1,.yunzi2,.yunzi3,.yunzi4,.yunzi5{ position: relative; left: -80px; opacity: 0.3;}
+.lef{opacity: 0.8;}
+.rigt{ position: relative; left: -80px;opacity: 0.1;}
+html, body, div, span,
+ ol, ul, li,
+audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;*/
+}
+html,body{overflow: hidden;}
+.btnGroup1{opacity: 0;}
+.btnGroup2{opacity: 0;}
+</style>
+
+<link rel="stylesheet" type="text/css" href="./resources/css/style.css" >
+<link rel="stylesheet" type="text/css" href="./resources/css/jquery.fullPage.css" >
+<link rel="stylesheet" type="text/css" href="./resources/css/css.css"  />
+<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.css" />
+
+</head>
+
+<body>
+
+<div id="dowebok">
+
+	<div class="section section1 cd-slider-wrapper">	
+    <div class="nav">
+     <div class="link menu" style="width:100%;">
+     <div class="row">
+     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <h1 class="logo"><a href="/ncloud/index" >领域云</a></h1>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      <ul class="links">
+      <li class="current"><a href="/ncloud/index">首页</a></li>
+      <li><a href="/ncloud/software">软件资源库</a></li>
+      <li><a href="/ncloud/data">数据资源库</a></li>
+      <li><a href="/ncloud/simulation">在线仿真</a></li>
+      <li><a href="/ncloud/community">科研社区</a></li>
+      <li><a href="/ncloud/aboutus">关于我们</a></li>
+      </ul>
+      </div>
+    </div>
+     </div>
+    </div>
+    
+
+    <ul class="cd-slider">
+	<li class="visible">
+    <div> 
+	<div class="ban1"> 
+<div class="toId" >
+<div onclick="window.open('/ncloud/software','_self');"><span class="toZixun">软件服务</span><span class="toCret">立即使用</span></div>
+<div onclick="window.open('/ncloud/data','_self');"><span class="toShis">数据服务</span><span class="toZhye">立即使用</span></div>
+<div onclick="window.open('/ncloud/simulation ','_self');"><span class="toYuny">中子输运</span><span class="toChx">在线仿真</span></div>
+<div onclick="window.open('/ncloud/simulation ','_self');"><span class="toshigu">事故安全</span><span class="toshiguxia">在线仿真</span></div>
+<div onclick="window.open('/ncloud/simulation ','_self');"><span class="tosuper">科研社区</span><span class="tosuperxia">立即访问</span></div>
+</div>
+	<div><div class="feYuanqu">中国核安全科技领域云</div></div>
+    </div>
+    <div style= "margin:0 auto;width:600px;height:200px;border:6px solid ##F0FFFF;background-color:FFFAFA;" >
+   <h4 >领域云动态</h4>
+   <p>更新信息：添加数据库 聚变装置数据库<br /></p>
+   <p>更新信息： 功能上线     添加科研社区访问链接</p>
+   <p>更新信息： 测试公告 2018-09-10</p>
+   </div>
+	</li>
+    <li class="greenBg">
+    </li>
+      <li>
+      <div>
+
+      </div>
+      </li>
+    </ul> 
+
+<div class="cd-svg-cover" data-step1="M1402,800h-2V0.6c0-0.3,0-0.3,0-0.6h2v294V800z" data-step2="M1400,800H383L770.7,0.6c0.2-0.3,0.5-0.6,0.9-0.6H1400v294V800z" data-step3="M1400,800H0V0.6C0,0.4,0,0.3,0,0h1400v294V800z" data-step4="M615,800H0V0.6C0,0.4,0,0.3,0,0h615L393,312L615,800z" data-step5="M0,800h-2V0.6C-2,0.4-2,0.3-2,0h2v312V800z" data-step6="M-2,800h2L0,0.6C0,0.3,0,0.3,0,0l-2,0v294V800z" data-step7="M0,800h1017L629.3,0.6c-0.2-0.3-0.5-0.6-0.9-0.6L0,0l0,294L0,800z" data-step8="M0,800h1400V0.6c0-0.2,0-0.3,0-0.6L0,0l0,294L0,800z" data-step9="M785,800h615V0.6c0-0.2,0-0.3,0-0.6L785,0l222,312L785,800z" data-step10="M1400,800h2V0.6c0-0.2,0-0.3,0-0.6l-2,0v312V800z">
+	<svg height='100%' width="100%" preserveAspectRatio="none" viewBox="0 0 1400 800">
+		<title>SVG cover layer</title>
+		<desc>an animated layer to switch from one slide to the next one</desc>
+		<path id="cd-changing-path" d="M1402,800h-2V0.6c0-0.3,0-0.3,0-0.6h2v294V800z"/>
+	</svg>
+</div>
+</div><!--section1-->
+
+	
+  
+   
+
+</div>
+
+<script src="/resources/js/jquery-1.9.1.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/resources/js/jquery.fullPage.min.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/resources/js/jquery.easing.min.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/resources/js/snap.svg-min.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/resources/js/modernizr.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/resources/js/angular.min.js"  type="text/javascript" charset="UTF-8"></script>
+
+<script>
+// tab标签切换
+    jQuery.jqtab = function(tabtit,tab_conbox,shijian) {
+        $(tab_conbox).find(".tab_con").hide();
+        $(tabtit).find("li:first").addClass("blue").show();
+        $(tab_conbox).find(".tab_con:first").show();
+
+        $(tabtit).find("li").bind(shijian,function(){
+          $(this).addClass("blue").siblings("li").removeClass("blue");
+            var activeindex = $(tabtit).find("li").index(this);
+            $(tab_conbox).children().eq(activeindex).fadeIn(200).siblings().hide();
+           return false;
+        });
+    };
+// tab标签切换
+  
+
+	// tab大气泡标签切换2
+    jQuery.jqtab = function(tabtit,tabtit2,tab_conbox,shijian) {
+        $(tab_conbox).find(".tab_con").hide();
+        $(tab_conbox).find(".tab_con:first").show();
+		$(tabtit2).find("li:first").addClass("blue").show();
+
+        $(tabtit).find("li").bind(shijian,function(){
+            var activeindex = $(tabtit).find("li").index(this);
+            $(tab_conbox).children().eq(activeindex).fadeIn(20).siblings().hide();
+			 $(tabtit2).children().eq(activeindex).addClass("blue").siblings("li").removeClass("blue");
+           return false;
+        });
+    };
+
+/*顶部导航切换	*/
+$(function() {
+	var $t, leftX, newWidth;
+	$('.menu ul').append('<div class="block"></div>');
+	var $block = $('.block');
+
+	$block.width($(".current").width()).css('left', $('.current a').position().left).data('rightLeft', $block.position().left).data('rightWidth', $block.width());
+
+	$('.menu ul li').find('a').hover(function() {
+		$t = $(this);
+		leftX = $t.position().left;
+		newWidth = $t.parent().width();
+
+		$block.stop().animate({
+			left: leftX,
+			width: newWidth
+		},300);
+	}, function() {
+		$block.stop().animate({
+			left: $block.data('rightLeft'),
+			width: $block.data('rightWidth')
+		},300)
+	})
+	// $($('.menu ul li.current'))[0].setAttribute('id','firstLi');
+	// var getClass = $($('.menu ul li.current'))[0].getAttribute('class','current');
+	// console.log(getClass)
+})
+/*客服悬浮效果*/
+$(function(){
+	//Sldie
+	$(".kefu").mouseenter(function(){
+		$(".kefulist").fadeIn();
+	});
+	$(".kefu").mouseleave(function(){
+		$(".kefulist").hide();
+	});
+});
+$(function(){
+	//Sldie
+	$(".kefu2").mouseenter(function(){
+		$(".kefulist2").fadeIn();
+	});
+	$(".kefu2").mouseleave(function(){
+		$(".kefulist2").hide();
+	});
+});
+$(function(){
+	//Sldie
+	$(".kefu3").mouseenter(function(){
+		$(".kefulist3").fadeIn();
+	});
+	$(".kefu3").mouseleave(function(){
+		$(".kefulist3").hide();
+	});
+});
+$(function(){
+	//Sldie
+	$(".kefu4").mouseenter(function(){
+		$(".kefulist4").fadeIn();
+	});
+	$(".kefu4").mouseleave(function(){
+		$(".kefulist4").hide();
+	});
+});
+<!--视频弹窗-->
+function open_v(){
+        $('#video_player').stop().fadeIn();
+		var video = document.getElementById("myVideo");
+		video.volume=0;
+		video.pause();
+    }
+function close_v(){
+        $('#video_player').stop().hide();
+		var video = document.getElementById("myVideo");
+		video.currentTime = 0;
+		video.volume=0;
+		video.pause();	
+    }
+<!--背景图片点击消失-->
+$(function(){
+	$(".sliderNav_left a").click(function(){
+		$(".sliderNav_left").css("background","none");
+		});
+	});
+
+function changPage(){
+		var thisPage =$(".cd-slider-navigation .selected");
+		if(thisPage.next().length!=0){
+			thisPage.next().click();
+		}else{
+			$(".cd-slider-navigation").find("li:eq(0)").click();
+		}
+		setTimeout('changPage()',10000);
+	}
+changPage();
+</script>
+<script type="text/javascript" src="/resources/common/website/news/js/news_ng.js" tppabs="http://www.zhparks.com/news/js/news_ng.js" charset="UTF-8"></script>
+<script src="${basePath}/resources/common/website/js/main.js" ></script> <!-- Resource jQuery -->
+<script>
+$(function(){
+	$('#dowebok').fullpage({
+		'navigation': true,
+		afterLoad: function(anchorLink, index){
+			if(index == 1){
+				$('.section2').find('#video_close').click();
+			}
+			if(index == 2){
+			    $('.section3').find('.btnGroup1').delay(0).animate({
+					opacity:'1'
+				}, 10000, 'easeOutExpo');
+				$('.section3').find('.btnGroup2').delay(500).animate({
+					opacity:'1'
+				}, 10000, 'easeOutExpo');
+				$('.section3').find('.cir1').addClass('cir1-move');
+				$('.section3').find('.cir2').addClass('cir2-move');
+				$('.section2').find('#video_close').click();
+			}
+			if(index == 3){
+				$('.section5').find('.lef').delay(0).animate({
+					width: '690px', opacity:'1'
+				}, 1500, 'easeOutExpo');
+				$('.section5').find('.rigt').delay(250).animate({
+					left: '0', opacity:'1'
+				}, 1500, 'easeOutExpo');
+			}
+			
+		},
+		
+		onLeave: function(index, direction){
+			
+			if(index == '2'){
+			$('.section3').find('.btnGroup1').delay(0).animate({
+					opacity:'0'
+				}, 1500, 'easeOutExpo');
+			$('.section3').find('.btnGroup2').delay(0).animate({
+					opacity:'0'
+				}, 1500, 'easeOutExpo');
+            $('.section3').find('.cir1').removeClass('cir1-move');
+			$('.section3').find('.cir2').removeClass('cir2-move');
+			}
+			
+		}
+	});
+});
+
+</script>
+</body>
+</html>

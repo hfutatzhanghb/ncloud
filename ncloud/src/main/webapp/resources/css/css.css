@@ -1,0 +1,276 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,ul{
+margin:0px;
+padding:0px;}
+html,body{overflow: hidden;}
+#container,#container2,#container3,#container4,#container5 {
+	MARGIN: 0px 0px;
+	height: auto;
+	display: block;
+	overflow: hidden;
+	TEXT-ALIGN: left;
+}
+#slider,#slider2,#slider3,#slider4,#slider5{
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: visible;
+	PADDING-TOP: 1px;
+	POSITION: relative;
+	HEIGHT: 470px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+
+}
+#slider .sliderItem,#slider2 .sliderItem2,#slider3 .sliderItem3,#slider4 .sliderItem4,#slider5 .sliderItem5  {
+	LEFT: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 100%;
+	POSITION: absolute;
+	TOP: 1px! important;
+	HEIGHT: 460px;
+}
+#slider .sliderItem IMG,#slider2 .sliderItem2 IMG,#slider3 .sliderItem3 IMG,#slider4 .sliderItem4 IMG,#slider5 .sliderItem5 IMG,  {
+	Z-INDEX: 100; 
+}
+/*幻灯片的导航*/
+#sliderNav,#sliderNav2,#sliderNav3,#sliderNav4,#sliderNav5{
+	width: 100%;
+	height: 80px;
+	OVERFLOW: hidden;
+	POSITION: relative;
+	margin-top: -10px;
+}
+.sliderNav_left{
+	height: 80px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	position: absolute;
+	background-image: url("../images/project.gif")/*tpa=http://www.zhparks.com/images/project.gif*/;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.sliderNav_bg{
+	background-image: url("../images/project2.gif")/*tpa=http://www.zhparks.com/images/project2.gif*/;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	}
+#sliderNav UL,#sliderNav2 UL,#sliderNav3 UL,#sliderNav4 UL,#sliderNav5 UL {
+	PADDING: 0px;
+	FLOAT: left;
+	MARGIN: 3px 0px 0px 0px;
+	OVERFLOW: visible;
+	HEIGHT: 32px;
+	list-style-type: none;
+	width: auto;
+}
+#sliderNav UL LI,#sliderNav2 UL LI,#sliderNav3 UL LI,#sliderNav4 UL LI,#sliderNav5 UL LI {
+	FLOAT: left;
+	list-style-type: none;
+}
+#sliderNav ul li a,#sliderNav2 ul li a,#sliderNav3 ul li a,#sliderNav4 ul li a,#sliderNav5 ul li a {
+	DISPLAY: block; 
+	MARGIN: 0px 5px 0px 0px; 
+	WIDTH: 37px; 
+	TEXT-INDENT: -9999px; 
+	HEIGHT: 32px;
+	overflow:hidden;
+}
+
+#sliderNav UL LI A.activeSlide,#sliderNav2 UL LI A.activeSlide,#sliderNav3 UL LI A.activeSlide,#sliderNav4 UL LI A.activeSlide,#sliderNav5 UL LI A.activeSlide {
+	BACKGROUND-POSITION: left 50%;
+}
+#sliderNav UL LI A:hover,#sliderNav2 UL LI A:hover,#sliderNav3 UL LI A:hover,#sliderNav4 UL LI A:hover,#sliderNav5 UL LI A:hover {
+	BACKGROUND-POSITION: left 50%;
+}
+
+#sliderNav ul li a{
+	BACKGROUND: url("../images/button_slidernav_4.png")/*tpa=http://www.zhparks.com/images/button_slidernav_4.png*/ no-repeat right top;
+}
+#sliderNav2 ul li a,#sliderNav4 ul li a,#sliderNav3 ul li a,#sliderNav5 ul li a{
+	BACKGROUND: url("../images/button_slidernav_2.png")/*tpa=http://www.zhparks.com/images/button_slidernav_2.png*/ no-repeat right top;
+	}
+#sliderNav A.previous{
+	BACKGROUND: url("../images/button_slidernav.png")/*tpa=http://www.zhparks.com/images/button_slidernav.png*/ no-repeat left top;  
+	FLOAT: left; 
+	MARGIN: 0px 30px 0px 0px; 
+	WIDTH: 37px; 
+	TEXT-INDENT: -9999px; 
+	POSITION: relative; 
+	TOP: 3px; 
+	HEIGHT: 32px;
+	overflow:hidden;
+}
+#sliderNav2 A.previous,#sliderNav4 A.previous,#sliderNav3 A.previous,#sliderNav5 A.previous {
+	BACKGROUND: url("../images/button_slidernav2.png")/*tpa=http://www.zhparks.com/images/button_slidernav2.png*/ no-repeat left top;
+	FLOAT: left; 
+	MARGIN: 0px 30px 0px 0px; 
+	WIDTH: 37px; 
+	TEXT-INDENT: -9999px; 
+	POSITION: relative; 
+	TOP: 3px; 
+	HEIGHT: 32px;
+	overflow:hidden;  
+	}
+#sliderNav A.next {
+	BACKGROUND: url("../images/button_slidernav.png")/*tpa=http://www.zhparks.com/images/button_slidernav.png*/ no-repeat right top;
+	FLOAT: left;
+	WIDTH: 37px;
+	TEXT-INDENT: -9999px;
+	POSITION: relative;
+	TOP: 3px;
+	HEIGHT: 32px;
+	overflow: hidden;
+	margin-top: 0px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+	margin-left: 24px;
+}
+#sliderNav2 A.next,#sliderNav4 A.next,#sliderNav3 A.next,#sliderNav4 A.next,#sliderNav5 A.next{
+	BACKGROUND: url("../images/button_slidernav2.png")/*tpa=http://www.zhparks.com/images/button_slidernav2.png*/ no-repeat right top;
+	FLOAT: left;
+	WIDTH: 37px;
+	TEXT-INDENT: -9999px;
+	POSITION: relative;
+	TOP: 3px;
+	HEIGHT: 32px;
+	overflow: hidden;
+	margin-top: 0px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+	margin-left: 24px;
+	}
+
+/*广告正文文章样式*/
+/*.lfWen {
+	float: right;
+	white-space: normal;
+	margin-top: 100px;
+	width: 380px;
+	padding: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+}
+.lfWen ul,.rgWen ul {
+	padding: 0px;
+	margin-bottom: 0px;
+	list-style-type: none;
+	width: 100%;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+.lfWen ul li {
+	height: 100%;
+}
+
+.lfWen ul .proHead{
+	font-size: 40px;
+	font-weight: bold;
+	color: #FFF;
+	text-align: center;
+	margin-bottom: 30px;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	background-color: #930;
+}
+.lfWen ul .proHead div {
+	float: left;
+	height: 40px;
+	width: 21%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+	margin: 0px;
+	padding: 0px;
+}
+.lfWen ul .proHead .proBiaoti {
+	width: 220px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	margin: 0px;
+	padding: 0px;
+	height: 50px;
+	line-height: 50px;
+}
+.lfWen ul .proHed {
+	font-size: 28px;
+	color: #FFF;
+	margin-bottom: 20px;
+	padding-right: 10px;
+	padding-left: 10px;
+	clear: both;
+	padding-top: 25px;
+}
+
+.lfWen ul .proContent {
+	font-size: 14px;
+	color: #FFF;
+	line-height: 24px;
+	margin-bottom: 25px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.rgWen {
+	width: 380px;
+	float: left;
+	margin-top: 100px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999999;
+}
+.baNNitem{
+	white-space:normal;
+	}
+.baNNitem img {
+	float: right;
+}
+.rgWen ul .proHead {
+	font-size: 40px;
+	color: #333333;
+	margin-bottom: 30px;
+	font-weight: normal;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+.rgWen ul .proHed {
+	margin-top: 25px;
+	margin-bottom: 20px;
+	font-size: 28px;
+	color: #36a6cf;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999999;
+	padding-bottom: 14px;
+	width: auto;
+}
+.rgWen ul .proHed span {
+	background-image: url(../images/project-jiantou.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 20px;
+	display: inline-block;
+	height: 16px;
+	margin-left: 6px;
+}
+
+
+.rgWen ul .proContent {
+	font-size: 14px;
+	line-height: 30px;
+	margin-bottom: 25px;
+	color: #666666;
+}*/

@@ -1,0 +1,130 @@
+#nav {
+  position: sticky;
+  display: flex;
+  height: 82px;
+  background-color: #0f84b7;
+  opacity: 0.9;
+  justify-content: space-between
+}
+
+#nav>.logo {
+  padding-left: 15px;
+  font-size: 0;
+}
+
+#nav>.logo>img {
+  height: 82px;
+
+}
+
+.tag_container {
+  color: white;
+  font-size: 16px;
+  /* height: 82px; */
+  padding-right: 15px;
+
+}
+
+.tag_container>.tag {
+  line-height: 82px;
+  padding: 10px;
+}
+
+/* #page-wrapper{
+  margin-top:-30px;
+} */
+
+#page-content-wrapper {
+  margin-left: 225px;
+}
+
+#task {
+  /* overflow-x: scroll; */
+}
+
+a:link {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #fff
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:link.filelist {
+  color: #333;
+  text-decoration: none;
+}
+
+a:visited.filelist  {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover.filelist {
+  color: #000;
+  text-decoration: none;
+}
+
+a:link.breadlist {
+  color: #333;
+  text-decoration: none;
+}
+
+a:visited.breadlist {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover.breadlist {
+  color: #000;
+  text-decoration: none;
+}
+
+.task-icon{
+  padding: 4px;
+  margin-top: 10px;
+}
+
+.task_bar{
+  height: 50px;
+  background: #ECECEC;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.task_span{
+  font-size: 16px;
+  /* line-height: 50px; */
+  padding: 5px 10px 5px 10px;
+  margin: 0 12px;
+  /* cursor: pointer; */
+  /* background: #fff */
+  /* border:1px solid #fff;
+  border-radius: 5px;
+  background: #fff; */
+}
+
+#project_downmenu{
+  position: relative;
+}
+.link_icon>span{
+  color: black;
+}
+
+.file-icon>img{
+  width: 20px;
+  height: 20px;
+}
+
+.filefolder-icon>img{
+  width: 20px;
+  height: 20px;
+}
