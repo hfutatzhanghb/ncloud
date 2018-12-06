@@ -93,7 +93,7 @@
                           <i class="fa fa-fw fa-caret-down"></i></a>
                       <ul id="team" class="collapse in">
                                      <li>
-                <a href="<%=basePath%>/doc/root.do?teamID=${loginteam.teamID }" style="color:white"
+                <a href="<%=basePath%>/doc/root.do" style="color:white"
                   ><i class="fa fa-fw fa-files-o"></i> &nbsp;文档管理</a
                 >
               </li>
@@ -118,7 +118,7 @@
                 >
               </li>
               <li>
-                <a href="<%=basePath %>/team-manager.jsp" style="color:white"
+                <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
                   ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a
                 >
               </li>

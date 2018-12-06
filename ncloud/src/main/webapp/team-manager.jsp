@@ -109,7 +109,7 @@
             ></a>
             <ul id="team" class="collapse in">
               <li>
-                <a href="<%=basePath%>/doc/root.do?teamID=${loginteam.teamID}" style="color:white"
+                <a href="<%=basePath%>/doc/root.do" style="color:white"
                   ><i class="fa fa-fw fa-files-o"></i> &nbsp;文档管理</a
                 >
               </li>
@@ -350,12 +350,12 @@
                       <div class="input-group">
                         <input
                           type="text"
+                          name="teamname"
                           class="form-control"
                           placeholder="输入团队名"
                         />
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">
-                            搜索
+                          <button class="btn btn-default" id="btn_searchteam" type="button">搜索
                           </button>
                         </span>
                       </div>
@@ -366,30 +366,18 @@
               </div>
               <div style="padding:12px;">
                 <div class="panel panel-default">
-                  <table class="table">
+                  <table class="table" id="searchteam_table">
                     <tr>
                       <th>团队名</th>
                       <th>创建者</th>
-                      <th></th>
+                      <th>操作</th>
                     </tr>
                     <tr>
                       <td>团队1</td>
                       <td>创建者1</td>
                       <td>
-                        <button type="button" class="btn btn-primary">
-                          加入
-                        </button>
+                        <button type="button" class="btn btn-primary">加入</button>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>团队2</td>
-                      <td>创建者2</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>团队2</td>
-                      <td>创建者2</td>
-                      <td></td>
                     </tr>
                   </table>
                 </div>
@@ -398,10 +386,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              取消
-            </button>
-            <button type="button" class="btn btn-primary" >确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary">确定</button>
           </div>
         </div>
       </div>

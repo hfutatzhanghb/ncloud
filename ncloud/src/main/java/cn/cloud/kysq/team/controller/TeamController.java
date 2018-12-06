@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.cloud.kysq.login.entity.User;
@@ -57,13 +58,32 @@ public class TeamController {
 		Map<String, String> map = new HashMap<String, String>();
 		if (team != null) {
 			map.put("status", "success");
-			map.put("currentteam",team.getTeamName());
+			map.put("currentteam", team.getTeamName());
 			request.getSession().setAttribute("loginteam", team);
-			System.out.println((Team)request.getSession().getAttribute("loginteam"));
+			System.out.println((Team) request.getSession().getAttribute("loginteam"));
 		} else {
 			map.put("status", "empty");
 		}
 		return map;
+	}
+
+	// 对应搜索团队的请求
+	@ResponseBody
+	@RequestMapping(value = "/searchTeambyTeamName.do", method = RequestMethod.POST)
+	public Map<String, Object> searchTeamByTeamName(@RequestParam(value = "teamname") String teamname) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("teamname:  " + teamname);
+		Team team = teamService.getTeamByTeamName(teamname);
+		if (team != null) {
+			map.put("code", "success");
+			map.put("team", team);
+			return map;
+		} else {
+			map.put("code", "null");
+			map.put("team", null);
+			return map;
+		}
+
 	}
 
 }

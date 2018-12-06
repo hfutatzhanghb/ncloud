@@ -26,6 +26,7 @@ import cn.cloud.kysq.doc.entity.FileBreadCrumb;
 import cn.cloud.kysq.doc.entity.FileInfo;
 import cn.cloud.kysq.doc.service.FileService;
 import cn.cloud.kysq.login.entity.User;
+import cn.cloud.kysq.team.entity.Team;
 
 @Controller
 @RequestMapping(value = "/doc")
@@ -36,8 +37,8 @@ public class FileController {
 
 	// 此controller对应根root级的目录和文件请求
 	@RequestMapping(value = "/root.do")
-	public String getFirstLevelFile(HttpServletRequest request, @RequestParam(value = "teamID") String teamID) {
-
+	public String getFirstLevelFile(HttpServletRequest request) {
+		String teamID =  String.valueOf(((Team)request.getSession().getAttribute("loginteam")).getTeamID());
 		List<FileInfo> queryFirstLevelFiles = fileService.queryFirstLevelFiles(teamID);
 		request.setAttribute("fileList", queryFirstLevelFiles);
 		FileBreadCrumb fileBreadCrumb = new FileBreadCrumb();
