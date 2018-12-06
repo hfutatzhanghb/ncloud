@@ -54,7 +54,7 @@ function changeTeam(obj) {
 		distTeamname : teamname
 	}, function(data, status) {
 		if (data.status == "success") {
-			$("span#currentteam").text("当前团队是：" + data.currentteam);
+			$("span#teamname").text(data.currentteam);
 			$("#disappare").show().fadeOut(2000);
 		}
 	});
