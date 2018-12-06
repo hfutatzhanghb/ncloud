@@ -146,7 +146,7 @@
           <div class="row">
             <div class="col-lg-12">
               <h1 class="page-header" style="height: 50px;margin-top: 10px;">
-                <div class="col-lg-6"><!-- /input-group --><span id="currentteam">当前团队是：${loginteam.teamName }</span></div>
+                <div class="col-lg-6"><!-- /input-group --><span id="currentteam">当前团队 <span id="teamname">${loginteam.teamName }</span></span></div>
                 <!-- /.col-lg-6 -->
                 <button
                   class="btn btn-primary pull-right"
