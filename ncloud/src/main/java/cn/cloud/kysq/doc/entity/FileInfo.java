@@ -12,6 +12,7 @@ public class FileInfo {
 	private Integer fileofTeam; // 所属团队ID
 	private String filePath; // 绝对路径
 	private Integer fileStatus;// 文件状态：0：正常，1：回收站标记, 2:文件被永久删除
+	private String fileDesription;  //文件描述
 
 	public Integer getFileID() {
 		return fileID;

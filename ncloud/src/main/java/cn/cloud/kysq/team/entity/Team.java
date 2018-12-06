@@ -17,7 +17,8 @@ public class Team {
 	private String teamCompany; // 团队单位
 	private String teamLogoURL; // 团队LOGO的URL
 	private Integer teamDeleteflag; // 团队删除标记 0:团队有效 1:团队被删除 default:0
-
+	
+	
 	public Team() {
 	}
 
@@ -91,5 +92,10 @@ public class Team {
 
 	public void setTeamCreatorName(String teamCreatorName) {
 		this.teamCreatorName = teamCreatorName;
+	}
+
+	@Override
+	public String toString() {
+		return "Team [teamID=" + teamID + ", teamName=" + teamName + ", teamCreatorName=" + teamCreatorName + "]";
 	}
 }

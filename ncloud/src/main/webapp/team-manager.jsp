@@ -134,9 +134,8 @@
                 >
               </li>
               <li>
-                <a href="team-manager.jsp" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a
-                >
+                <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
+                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a>
               </li>
             </ul>
           </li>

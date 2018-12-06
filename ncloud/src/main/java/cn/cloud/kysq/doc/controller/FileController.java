@@ -2,13 +2,10 @@ package cn.cloud.kysq.doc.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cn.cloud.kysq.doc.entity.FileBreadCrumb;
 import cn.cloud.kysq.doc.entity.FileInfo;
-import cn.cloud.kysq.doc.service.IFileService;
+import cn.cloud.kysq.doc.service.FileService;
 import cn.cloud.kysq.login.entity.User;
 
 @Controller
@@ -35,7 +32,7 @@ import cn.cloud.kysq.login.entity.User;
 public class FileController {
 
 	@Autowired
-	private IFileService fileService;
+	private FileService fileService;
 
 	// 此controller对应根root级的目录和文件请求
 	@RequestMapping(value = "/root.do")
