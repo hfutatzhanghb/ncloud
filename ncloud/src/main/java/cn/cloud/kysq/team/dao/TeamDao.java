@@ -76,11 +76,32 @@ public class TeamDao {
 		@Override
 		public Team mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Team team = new Team();
-			team.setTeamID(rs.getInt(1));
-			team.setTeamName(rs.getString(2));
-			team.setTeamCreatorName(rs.getString(3));
-			team.setTeamCreatorTime(rs.getDate(4));
+			team.setTeamID(rs.getInt("team_ID"));
+			team.setTeamName(rs.getString("team_name"));
+			team.setTeamCreatorName(rs.getString("team_creatorName"));
+			team.setTeamCreatorTime(rs.getDate("team_creatorTime"));
+			team.setTeamCategory(rs.getString("team_category"));
+			team.setTeamDescription(rs.getString("team_description"));
+			team.setTeamCompany(rs.getString("team_company"));
+			team.setTeamDeleteflag((rs.getInt("team_deleteflag")));
 			return team;
+		}
+	}
+
+	/**
+	 * 根据Team名称查询出Team实体
+	 * 
+	 * @param distTeamname
+	 *            Team名称
+	 * @return
+	 */
+	public Team selectTeamByTeamName(String distTeamname) {
+		String sql = "select * from team where team_name= ?";
+		List<Team> query = jdbctemplate.query(sql, new Object[] { distTeamname }, new TeamRowMapper());
+		if (query.isEmpty()) {
+			return null;
+		} else {
+			return query.get(0);
 		}
 	}
 }

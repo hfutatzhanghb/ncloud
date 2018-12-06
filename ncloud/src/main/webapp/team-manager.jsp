@@ -146,7 +146,7 @@
           <div class="row">
             <div class="col-lg-12">
               <h1 class="page-header" style="height: 50px;margin-top: 10px;">
-                <div class="col-lg-6"><!-- /input-group --><span>当前团队是：${loginteam.teamName }</span></div>
+                <div class="col-lg-6"><!-- /input-group --><span id="currentteam">当前团队是：${loginteam.teamName }</span></div>
                 <!-- /.col-lg-6 -->
                 <button
                   class="btn btn-primary pull-right"
@@ -155,6 +155,7 @@
                 >
                   <i class="fa fa-fw fa-plus"></i>&nbsp;加入团队
                 </button>
+                
                 <button
                   class="btn btn-primary pull-right"
                   style="margin-right:10px; "
@@ -166,6 +167,14 @@
               </h1>
             </div>
           </div>
+          
+          <input type="hidden" id="ctxValue"  value="<%=basePath%>/team/" />
+          
+          <div id="disappare" style="display:none;">
+            <h2>切换成功</h2>
+            <p>2秒后自动隐藏此内容</p>
+          </div>
+          
           <!-- Three columns of text below the carousel -->
           <div class="row">
             <div class="col-xs-1 col-md-2"></div>
@@ -173,7 +182,7 @@
               <table class="table">
                 <tr>
                   <th>团队名</th>
-                  <th>创建者</th>
+                  <th>创建者邮箱</th>
                   <th></th>
                 </tr>
                 
@@ -182,7 +191,7 @@
                 	<td>${iter_team.teamName }</td>
                 	<td>${iter_team.teamCreatorName }</td>
                 	<td>
-                    <button type="button" class="btn btn-primary">进入</button>
+                    <button type="button" class="btn btn-primary" onclick="changeTeam(this)">进入</button>
                   </td>
                 </tr>
                 </c:forEach>
@@ -196,13 +205,7 @@
 
       <!-- /#page-wrapper -->
     </div>
-    <!--
-      <div id="footer">
-        <div class="container text-center">
-          Copyright©2018 中国科学院核能安全技术研究所 版权所有 站长统计
-        </div>
-      </div>
-    -->
+    
     <!-- /#wrapper -->
     <div
       class="modal fade"
@@ -222,23 +225,22 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">创建任务</h4>
+            <h4 class="modal-title" id="myModalLabel">创建团队</h4>
           </div>
           <div class="modal-body">
             <div class="row">
               <div class="">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="createteamform" action="<%=basePath%>/team/createteam.do">
                   <fieldset>
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="textinput"
-                        >团队名称*</label
-                      >
+                        >团队名称*</label>
                       <div class="col-md-6">
                         <input
                           id="textinput"
-                          name="textinput"
+                          name="teamName"
                           type="text"
-                          placeholder=""
+                          placeholder="输入团队名称"
                           class="form-control input-md"
                           required=""
                         />
@@ -289,7 +291,7 @@
                     </div>
 
                     <!-- Button -->
-                    <div class="form-group">
+<!--                     <div class="form-group">
                       <label
                         class="col-md-4 control-label"
                         for="singlebutton"
@@ -303,17 +305,16 @@
                           创建
                         </button>
                       </div>
-                    </div>
+                    </div> -->
                   </fieldset>
                 </form>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              取消
-            </button>
-            <button type="button" class="btn btn-primary">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" onclick="confirmCreateTeam()">创建</button>
+            
           </div>
         </div>
       </div>
@@ -400,7 +401,7 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">
               取消
             </button>
-            <button type="button" class="btn btn-primary">确定</button>
+            <button type="button" class="btn btn-primary" >确定</button>
           </div>
         </div>
       </div>
@@ -410,5 +411,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+    <!-- Customer JavaScript -->
+    <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
   </body>
 </html>

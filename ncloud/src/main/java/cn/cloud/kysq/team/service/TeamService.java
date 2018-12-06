@@ -53,4 +53,9 @@ public class TeamService {
 		return 0;
 	}
 
+	public Team getTeamByTeamName(String distTeamname) {
+		Team team = teamDao.selectTeamByTeamName(distTeamname);
+		return team;
+	}
+
 }
