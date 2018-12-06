@@ -367,7 +367,7 @@
               <div style="padding:12px;">
                 <div class="panel panel-default">
                   <table class="table" id="searchteam_table">
-                    <tr>
+<!--                     <tr>
                       <th>团队名</th>
                       <th>创建者</th>
                       <th>操作</th>
@@ -378,7 +378,7 @@
                       <td>
                         <button type="button" class="btn btn-primary">加入</button>
                       </td>
-                    </tr>
+                    </tr> -->
                   </table>
                 </div>
               </div>
