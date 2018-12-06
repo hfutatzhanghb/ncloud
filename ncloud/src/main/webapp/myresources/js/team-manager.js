@@ -35,6 +35,10 @@ $(function() {
 	$(document).on("click","#btn_shenqingjiaru",function(){
 		
 	});
+	
+	$("#btn_cleardialog").click(function(){
+		$("#searchteam_table").html("");
+	})
 });
 
 function confirmCreateTeam() {
