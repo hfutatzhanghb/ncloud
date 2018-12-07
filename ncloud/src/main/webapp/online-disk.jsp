@@ -101,7 +101,7 @@
                 >
               </li>
               <li>
-                <a href="task-manager.jsp" style="color:white"
+                <a href="<%=basePath%>task-manager.jsp" style="color:white"
                   ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;任务协作</a
                 >
               </li>

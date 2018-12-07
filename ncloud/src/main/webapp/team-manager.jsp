@@ -113,7 +113,7 @@
                 >
               </li>
               <li>
-                <a href="task-manager.jsp" style="color:white"
+                <a href="<%=basePath%>task-manager.jsp" style="color:white"
                   ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;任务协作</a
                 >
               </li>
@@ -167,7 +167,11 @@
             </div>
           </div>
           
+          <!-- 隐藏标签 -->
           <input type="hidden" id="ctxValue"  value="<%=basePath%>/team/" />
+          <!-- 隐藏标签 ,判断是否进行Ajax轮询处理加入团队请求操作-->
+          <input type="hidden" id= "id_forteam_creatorEmail" value="${loginteam.teamCreatorName}"/>
+          <input type="hidden" id= "id_foruser_email" value="${user.email}"/>
           
           <div id="disappare" style="display:none;">
             <h2>切换成功</h2>

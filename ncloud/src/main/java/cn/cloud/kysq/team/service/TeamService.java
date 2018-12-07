@@ -86,5 +86,8 @@ public class TeamService {
 		Team team = teamDao.selectTeamByTeamName(distTeamname);
 		return team;
 	}
-
+	
+	/**
+	 * 得到团队
+	 */
 }

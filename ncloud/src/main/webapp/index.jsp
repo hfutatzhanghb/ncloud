@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+<%
+ String path = request.getContextPath();
+ String basePath = request.getScheme() + "://"
+  + request.getServerName() + ":" + request.getServerPort()
+  + path + "/";
+%>
 <!DOCTYPE html >
 <html lang="en">
   <head>
@@ -9,22 +17,21 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>团队管理</title>
+    <title>欢迎界面</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="myresources/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="<%=basePath%>/myresources/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- AmaranJS CSS -->
+	<link href="<%=basePath%>/myresources/css/amaran.min.css" rel="stylesheet" />
+	<link href="<%=basePath%>/myresources/css/animate.min.css" rel="stylesheet" />
+	
     <!-- Custom CSS -->
-    <link href="myresources/css/sb-admin.css" rel="stylesheet" />
-    <link href="myresources/css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="myresources/css/exDemoTasks.css" />
-    <link
-      href="myresources/font-awesome/css/font-awesome.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="myresources/css/simple-sidebar.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="myresources/css/style.css" />
+    <link href="<%=basePath%>/myresources/css/sb-admin.css" rel="stylesheet" />
+    <link href="<%=basePath%>/myresources/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
+    <link href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
 
     <!--
@@ -64,7 +71,7 @@
             ></a>
             <ul id="info" class="collapse in">
               <li>
-                <a href="login.do" style="color:white"
+                <a href="#" style="color:white"
                   ><i class="fa fa-fw fa-files-o"></i>&nbsp;登陆</a
                 >
               </li>
@@ -101,13 +108,13 @@
             ></a>
             <ul id="team" class="collapse in">
               <li>
-                <a href="#" style="color:white"
+                <a href="<%=basePath%>/doc/root.do" style="color:white"
                   ><i class="fa fa-fw fa-files-o"></i> &nbsp;文档管理</a
                 >
               </li>
               <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;小组协助</a
+                <a href="<%=basePath%>task-manager.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;任务协作</a
                 >
               </li>
               <li class="active">
@@ -126,9 +133,8 @@
                 >
               </li>
               <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a
-                >
+                <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
+                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a>
               </li>
             </ul>
           </li>
@@ -139,7 +145,7 @@
           <div class="row">
             <div class="col-lg-12">
               <h1 class="page-header" style="height: 50px;margin-top: 10px;">
-                <div class="col-lg-6"><!-- /input-group --></div>
+                <div class="col-lg-6"><!-- /input-group --><span id="currentteam">当前团队 <span id="teamname">${loginteam.teamName }</span></span></div>
                 <!-- /.col-lg-6 -->
                 <button
                   class="btn btn-primary pull-right"
@@ -148,6 +154,7 @@
                 >
                   <i class="fa fa-fw fa-plus"></i>&nbsp;加入团队
                 </button>
+                
                 <button
                   class="btn btn-primary pull-right"
                   style="margin-right:10px; "
@@ -159,6 +166,18 @@
               </h1>
             </div>
           </div>
+          
+          <!-- 隐藏标签 -->
+          <input type="hidden" id="ctxValue"  value="<%=basePath%>/team/" />
+          <!-- 隐藏标签 ,判断是否进行Ajax轮询处理加入团队请求操作-->
+          <input type="hidden" id= "id_forteam_creatorEmail" value="${loginteam.teamCreatorName}"/>
+          <input type="hidden" id= "id_foruser_email" value="${user.email}"/>
+          
+          <div id="disappare" style="display:none;">
+            <h2>切换成功</h2>
+            <p>2秒后自动隐藏此内容</p>
+          </div>
+          
           <!-- Three columns of text below the carousel -->
           <div class="row">
             <div class="col-xs-1 col-md-2"></div>
@@ -166,26 +185,19 @@
               <table class="table">
                 <tr>
                   <th>团队名</th>
-                  <th>创建者</th>
+                  <th>创建者邮箱</th>
                   <th></th>
                 </tr>
+                
+                <c:forEach items="${teams}" var="iter_team" >
                 <tr>
-                  <td>团队1</td>
-                  <td>创建者1</td>
-                  <td>
-                    <button type="button" class="btn btn-primary">进入</button>
+                	<td>${iter_team.teamName }</td>
+                	<td>${iter_team.teamCreatorName }</td>
+                	<td>
+                    <button type="button" class="btn btn-primary" onclick="changeTeam(this)">进入</button>
                   </td>
                 </tr>
-                <tr>
-                  <td>团队2</td>
-                  <td>创建者2</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>团队2</td>
-                  <td>创建者2</td>
-                  <td></td>
-                </tr>
+                </c:forEach>
               </table>
             </div>
           </div>
@@ -196,13 +208,7 @@
 
       <!-- /#page-wrapper -->
     </div>
-    <!--
-      <div id="footer">
-        <div class="container text-center">
-          Copyright©2018 中国科学院核能安全技术研究所 版权所有 站长统计
-        </div>
-      </div>
-    -->
+    
     <!-- /#wrapper -->
     <div
       class="modal fade"
@@ -222,23 +228,22 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">创建任务</h4>
+            <h4 class="modal-title" id="myModalLabel">创建团队</h4>
           </div>
           <div class="modal-body">
             <div class="row">
               <div class="">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="createteamform" action="<%=basePath%>/team/createteam.do">
                   <fieldset>
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="textinput"
-                        >团队名称*</label
-                      >
+                        >团队名称*</label>
                       <div class="col-md-6">
                         <input
                           id="textinput"
-                          name="textinput"
+                          name="teamName"
                           type="text"
-                          placeholder=""
+                          placeholder="输入团队名称"
                           class="form-control input-md"
                           required=""
                         />
@@ -289,7 +294,7 @@
                     </div>
 
                     <!-- Button -->
-                    <div class="form-group">
+<!--                     <div class="form-group">
                       <label
                         class="col-md-4 control-label"
                         for="singlebutton"
@@ -303,17 +308,16 @@
                           创建
                         </button>
                       </div>
-                    </div>
+                    </div> -->
                   </fieldset>
                 </form>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              取消
-            </button>
-            <button type="button" class="btn btn-primary">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" onclick="confirmCreateTeam()">创建</button>
+            
           </div>
         </div>
       </div>
@@ -349,12 +353,12 @@
                       <div class="input-group">
                         <input
                           type="text"
+                          name="teamname"
                           class="form-control"
                           placeholder="输入团队名"
                         />
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">
-                            搜索
+                          <button class="btn btn-default" id="btn_searchteam" type="button">搜索
                           </button>
                         </span>
                       </div>
@@ -365,31 +369,19 @@
               </div>
               <div style="padding:12px;">
                 <div class="panel panel-default">
-                  <table class="table">
-                    <tr>
+                  <table class="table" id="searchteam_table">
+<!--                     <tr>
                       <th>团队名</th>
                       <th>创建者</th>
-                      <th></th>
+                      <th>操作</th>
                     </tr>
                     <tr>
                       <td>团队1</td>
                       <td>创建者1</td>
                       <td>
-                        <button type="button" class="btn btn-primary">
-                          加入
-                        </button>
+                        <button type="button" class="btn btn-primary">加入</button>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>团队2</td>
-                      <td>创建者2</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>团队2</td>
-                      <td>创建者2</td>
-                      <td></td>
-                    </tr>
+                    </tr> -->
                   </table>
                 </div>
               </div>
@@ -397,18 +389,19 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              取消
-            </button>
-            <button type="button" class="btn btn-primary">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cleardialog">关闭</button>
           </div>
         </div>
       </div>
     </div>
+    
     <!-- jQuery -->
-    <script src="myresources/js/jquery.js"></script>
-
+    <script src="<%=basePath%>/myresources/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="myresources/js/bootstrap.min.js"></script>
+    <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+    <!-- AmaranJS Core -->
+    <script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
+    <!-- Customer JavaScript -->
+    <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
   </body>
 </html>

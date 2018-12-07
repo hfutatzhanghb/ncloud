@@ -123,6 +123,7 @@ public class TeamController {
 		} else {
 			map.put("code", "failed");
 			map.put("msg", "已拒绝");
+
 		}
 		return map;
 	}
