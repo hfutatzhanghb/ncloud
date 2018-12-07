@@ -2,20 +2,19 @@ package cn.cloud.kysq.team.entity;
 
 /**
  * 申请加入团队的消息实体类
+ * 
  * @author zhb
  *
  */
 public class JoinTeamMsg {
 
 	private String fromusername; // 发消息的人
-	private String tousername; // 收消息的人
-	private Integer ishandle; // 是否处理了，未处理0，处理1。  默认值为0未处理
+	private String touseremail; // 收消息的人
+	private Integer ishandle; // 是否处理了，未处理0，处理1。 默认值为0未处理
 	private String msgcontent; // 消息内容
 
 	public JoinTeamMsg() {
 	}
-
-
 
 	public String getFromusername() {
 		return fromusername;
@@ -23,14 +22,6 @@ public class JoinTeamMsg {
 
 	public void setFromusername(String fromusername) {
 		this.fromusername = fromusername;
-	}
-
-	public String getTousername() {
-		return tousername;
-	}
-
-	public void setTousername(String tousername) {
-		this.tousername = tousername;
 	}
 
 	public Integer getIshandle() {
@@ -51,7 +42,15 @@ public class JoinTeamMsg {
 
 	@Override
 	public String toString() {
-		return "JoinTeamMsg [fromusername=" + fromusername + ", tousername=" + tousername + ", ishandle=" + ishandle
+		return "JoinTeamMsg [fromusername=" + fromusername + ", touseremail=" + touseremail + ", ishandle=" + ishandle
 				+ ", msgcontent=" + msgcontent + "]";
+	}
+
+	public String getTouseremail() {
+		return touseremail;
+	}
+
+	public void setTouseremail(String touseremail) {
+		this.touseremail = touseremail;
 	}
 }

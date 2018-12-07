@@ -93,7 +93,7 @@ public class TeamController {
 	public Map<String, Object> applyJoinTeam(HttpServletRequest request, JoinTeamMsg joinTeamMsg) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String fromusername = ((User)request.getSession().getAttribute("user")).getUsername();
-		boolean issuccess = teamService.applyjoinTeam(fromusername, joinTeamMsg.getTousername(), joinTeamMsg.getMsgcontent());
+		boolean issuccess = teamService.applyjoinTeam(fromusername, joinTeamMsg.getTouseremail(), joinTeamMsg.getMsgcontent());
 		if (issuccess) {
 			map.put("code", "success");
 			map.put("msg", "申请加入成功");

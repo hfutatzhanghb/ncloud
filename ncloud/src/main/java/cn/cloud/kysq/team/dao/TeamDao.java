@@ -109,10 +109,10 @@ public class TeamDao {
 	/**
 	 * 向 申请加团队消息表`team_join_msg`添加一条记录，申请加入团队
 	 */
-	public boolean insertTeamJoinMsg(String fromusername, String tousername, String msgcontent) {
-		String sql = "insert into team_join_msg (fromusername, tousername, msgcontent) values(?,?,?)";
+	public boolean insertTeamJoinMsg(String fromusername, String touseremail, String msgcontent) {
+		String sql = "insert into team_join_msg (fromusername, touseremail, msgcontent) values(?,?,?)";
 		try {
-			int updatestatus = jdbctemplate.update(sql, new Object[] { fromusername, tousername, msgcontent });
+			int updatestatus = jdbctemplate.update(sql, new Object[] { fromusername, touseremail, msgcontent });
 			if (updatestatus != 0) {
 				return true;
 			} else {
@@ -122,5 +122,14 @@ public class TeamDao {
 			return false;
 		}
 
+	}
+
+	/**
+	 * 处理 申请加入团队的消息,也即改变`team_join_msg`的ishandle字段
+	 */
+	public boolean UpdateTeamJoinMsg(String currUserEmail, String fromUsername) {
+
+		String sql = "update team_join_msg set ishandle = 1 where idhandle =0 and fromusername = ? and tousername=?";
+		return false;
 	}
 }
