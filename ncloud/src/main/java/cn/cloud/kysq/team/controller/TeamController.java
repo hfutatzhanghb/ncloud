@@ -111,8 +111,13 @@ public class TeamController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Boolean agree1 = Boolean.valueOf(agree);
 		String teamCreatorEmail = ((User) request.getSession().getAttribute("user")).getEmail();
-		teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(), joinTeamMsg.getTeamname(),
+		boolean issuccess = teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(), joinTeamMsg.getTeamname(),
 				agree1);
+		if (issuccess) {
+			
+		}else {
+			
+		}
 		return map;
 	}
 
