@@ -55,6 +55,7 @@ public class TeamController {
 	@ResponseBody
 	@RequestMapping(value = "/changeteam.do", method = RequestMethod.POST)
 	public Map<String, String> changeteam(HttpServletRequest request, String distTeamname) {
+		long starttime = System.currentTimeMillis();
 		Team team = teamService.getTeamByTeamName(distTeamname);
 		Map<String, String> map = new HashMap<String, String>();
 		if (team != null) {
@@ -65,6 +66,7 @@ public class TeamController {
 		} else {
 			map.put("status", "empty");
 		}
+		System.out.println(System.currentTimeMillis()-starttime);
 		return map;
 	}
 
