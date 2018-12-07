@@ -49,7 +49,7 @@ public class TeamService {
 	/**
 	 * 团队创建者处理相应的申请加入请求（同意，拒绝）
 	 * 
-	 * @return
+	 * @return true：同意且操作成功 false：拒绝申请 或者 操作失败
 	 */
 	@Transactional
 	public boolean handleJoinTeamRequest(String teamCreatorEmail, String fromUsername, String teamName, Boolean agree) {
@@ -58,11 +58,16 @@ public class TeamService {
 			boolean updateTeamJoinMsgStatus = teamDao.UpdateTeamJoinMsg(teamCreatorEmail, fromUsername, teamName);
 			// 2.向user_team_relationship里插入一条记录
 			User wantToUser = userDao.selectUserByUserName(fromUsername);
-			teamDao.insertUserToTeam(wantToUser, teamName);
+			boolean insertUserToTeamstatus = teamDao.insertUserToTeam(wantToUser, teamName);
+			if (updateTeamJoinMsgStatus && insertUserToTeamstatus) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			boolean updateTeamJoinMsgStatus = teamDao.UpdateTeamJoinMsg(teamCreatorEmail, fromUsername, teamName);
+			return false;
 		}
-		return agree;
 
 	}
 

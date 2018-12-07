@@ -104,5 +104,11 @@ public class TeamController {
 		}
 		return map;
 	}
+	
+	@ResponseBody
+	public Map<String , Object> handleJoinTeamRequest(HttpServletRequest request,){
+		
+		teamService.handleJoinTeamRequest(teamCreatorEmail, fromUsername, teamName, agree)
+	}
 
 }
