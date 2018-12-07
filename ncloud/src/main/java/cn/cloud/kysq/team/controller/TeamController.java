@@ -92,12 +92,13 @@ public class TeamController {
 	@RequestMapping(value = "/applyJoinTeam.do", method = RequestMethod.POST)
 	public Map<String, Object> applyJoinTeam(HttpServletRequest request, JoinTeamMsg joinTeamMsg) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		String fromusername = ((User)request.getSession().getAttribute("user")).getUsername();
-		boolean issuccess = teamService.applyjoinTeam(fromusername, joinTeamMsg.getTouseremail(), joinTeamMsg.getMsgcontent());
+		String fromusername = ((User) request.getSession().getAttribute("user")).getUsername();
+		boolean issuccess = teamService.applyjoinTeam(fromusername, joinTeamMsg.getTouseremail(),
+				joinTeamMsg.getMsgcontent(), joinTeamMsg.getTeamname());
 		if (issuccess) {
 			map.put("code", "success");
 			map.put("msg", "申请加入成功");
-		}else {
+		} else {
 			map.put("code", "failed");
 			map.put("msg", "申请加入失败,网络错误或不能重复申请");
 		}

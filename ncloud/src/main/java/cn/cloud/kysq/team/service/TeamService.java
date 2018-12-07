@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.cloud.kysq.login.dao.LoginDao;
 import cn.cloud.kysq.login.entity.User;
 import cn.cloud.kysq.team.dao.TeamDao;
+import cn.cloud.kysq.team.dao.UserDao;
 import cn.cloud.kysq.team.entity.Team;
 
 /**
@@ -22,6 +24,7 @@ public class TeamService {
 
 	@Autowired
 	private TeamDao teamDao;
+	private UserDao userDao;
 
 	/*
 	 * 创建团队： 需要同时向 团队实体表(`team`) 和 团队成员表(`user_team_relationship`)插入记录
@@ -43,19 +46,37 @@ public class TeamService {
 		return teamlist;
 	}
 
-	public List<Team> searchTeamByName() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 团队创建者处理相应的申请加入请求（同意，拒绝）
+	 * 
+	 * @return
+	 */
+	@Transactional
+	public boolean handleJoinTeamRequest(String teamCreatorEmail, String fromUsername, String teamName, Boolean agree) {
+		if (agree) {
+			// 1.将消息状态变为已处理
+			boolean updateTeamJoinMsgStatus = teamDao.UpdateTeamJoinMsg(teamCreatorEmail, fromUsername, teamName);
+			// 2.向user_team_relationship里插入一条记录
+			User wantToUser = userDao.selectUserByUserName(fromUsername);
+			teamDao.insertUserToTeam(wantToUser, teamName);
+		} else {
+			boolean updateTeamJoinMsgStatus = teamDao.UpdateTeamJoinMsg(teamCreatorEmail, fromUsername, teamName);
+		}
+		return agree;
+
 	}
 
 	/*
 	 * 用户申请加入Team
 	 */
-	public boolean applyjoinTeam(String fromusername, String tousername,  String msgcontent) {
-		boolean issuccess = teamDao.insertTeamJoinMsg(fromusername, tousername, msgcontent);
+	public boolean applyjoinTeam(String fromusername, String tousername, String msgcontent, String teamname) {
+		boolean issuccess = teamDao.insertTeamJoinMsg(fromusername, tousername, msgcontent, teamname);
 		return issuccess;
 	}
 
+	/*
+	 * 通过团队名得到团队实体
+	 */
 	public Team getTeamByTeamName(String distTeamname) {
 		Team team = teamDao.selectTeamByTeamName(distTeamname);
 		return team;

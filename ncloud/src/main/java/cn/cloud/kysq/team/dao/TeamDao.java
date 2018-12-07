@@ -3,6 +3,7 @@ package cn.cloud.kysq.team.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import cn.cloud.kysq.login.entity.User;
+import cn.cloud.kysq.team.entity.JoinTeamMsg;
 import cn.cloud.kysq.team.entity.Team;
 
 /**
@@ -109,10 +111,11 @@ public class TeamDao {
 	/**
 	 * 向 申请加团队消息表`team_join_msg`添加一条记录，申请加入团队
 	 */
-	public boolean insertTeamJoinMsg(String fromusername, String touseremail, String msgcontent) {
-		String sql = "insert into team_join_msg (fromusername, touseremail, msgcontent) values(?,?,?)";
+	public boolean insertTeamJoinMsg(String fromusername, String touseremail, String msgcontent, String teamname) {
+		String sql = "insert into team_join_msg (fromusername, touseremail, msgcontent,teamname) values(?,?,?,?)";
 		try {
-			int updatestatus = jdbctemplate.update(sql, new Object[] { fromusername, touseremail, msgcontent });
+			int updatestatus = jdbctemplate.update(sql,
+					new Object[] { fromusername, touseremail, msgcontent, teamname });
 			if (updatestatus != 0) {
 				return true;
 			} else {
@@ -127,9 +130,30 @@ public class TeamDao {
 	/**
 	 * 处理 申请加入团队的消息,也即改变`team_join_msg`的ishandle字段
 	 */
-	public boolean UpdateTeamJoinMsg(String currUserEmail, String fromUsername) {
+	public boolean UpdateTeamJoinMsg(String currUserEmail, String fromUsername, String teamName) {
 
-		String sql = "update team_join_msg set ishandle = 1 where idhandle =0 and fromusername = ? and tousername=?";
-		return false;
+		String sql = "update team_join_msg set ishandle = 1 where idhandle =0 and fromusername = ? and touseremail=? and teamname=?";
+		try {
+			int updatestatus = jdbctemplate.update(sql, new Object[] { fromUsername, currUserEmail, teamName });
+			if (updatestatus != 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (DataAccessException e) {
+			return false;
+		}
+	}
+
+	/**
+	 * 从`team_join_msg`获得所有申请加入团队的用户名字
+	 */
+	public List<String> selectAllWantToJoinTeamUserName(String teamCreatorEmail, String teamName) {
+		List<String> result = new ArrayList<String>();
+		String sql = "select fromusername from team_join_msg where touseremail =? and ishandle = 0 and teamname=?";
+		List<String> wantToJoinList = jdbctemplate.queryForList(sql, new Object[] { teamCreatorEmail, teamName },
+				String.class);
+		return wantToJoinList;
 	}
 }

@@ -23,7 +23,7 @@ $(function() {
                     <th>操作</th>\
                   </tr>';
 				//$("#searchteam_table").append('<tr><td>'+data.team.teamName+'</td><td>'+data.team.teamCreatorName+'</td><td><button type="button" class="btn btn-primary">加入</button></td></tr>');
-				html=html+'<tr><td>'+data.team.teamName+'</td><td value="td_teamCreatorEmail">'+data.team.teamCreatorName+'</td><td><button type="button" class="btn btn-primary" id="btn_shenqingjiaru">申请加入</button></td></tr>';
+				html=html+'<tr><td value="td_teamName">'+data.team.teamName+'</td><td value="td_teamCreatorEmail">'+data.team.teamCreatorName+'</td><td><button type="button" class="btn btn-primary" id="btn_shenqingjiaru">申请加入</button></td></tr>';
 				$("#searchteam_table").html(html);
 				$("input[name='teamname']").val("");
 			}else if (data.code=="null") {
@@ -42,7 +42,8 @@ $(function() {
 			relativepath + 'applyJoinTeam.do',
 			{
 				touseremail: $("td[value='td_teamCreatorEmail']").text(),
-				msgcontent: "申请加入"
+				msgcontent: "申请加入",
+				teamname:  $("td[value='td_teamName']").text()
 			},
 			function(data,status){
 				if(data.code=="success"){

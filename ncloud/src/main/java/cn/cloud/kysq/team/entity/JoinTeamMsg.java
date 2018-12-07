@@ -12,6 +12,7 @@ public class JoinTeamMsg {
 	private String touseremail; // 收消息的人
 	private Integer ishandle; // 是否处理了，未处理0，处理1。 默认值为0未处理
 	private String msgcontent; // 消息内容
+	private String teamname;
 
 	public JoinTeamMsg() {
 	}
@@ -52,5 +53,13 @@ public class JoinTeamMsg {
 
 	public void setTouseremail(String touseremail) {
 		this.touseremail = touseremail;
+	}
+
+	public String getTeamname() {
+		return teamname;
+	}
+
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
 	}
 }
