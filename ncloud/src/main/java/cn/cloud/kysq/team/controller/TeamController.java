@@ -55,7 +55,7 @@ public class TeamController {
 	@ResponseBody
 	@RequestMapping(value = "/changeteam.do", method = RequestMethod.POST)
 	public Map<String, String> changeteam(HttpServletRequest request, String distTeamname) {
-		//long starttime = System.currentTimeMillis();
+		// long starttime = System.currentTimeMillis();
 		Team team = teamService.getTeamByTeamName(distTeamname);
 		Map<String, String> map = new HashMap<String, String>();
 		if (team != null) {
@@ -66,7 +66,7 @@ public class TeamController {
 		} else {
 			map.put("status", "empty");
 		}
-		//System.out.println(System.currentTimeMillis()-starttime);
+		// System.out.println(System.currentTimeMillis()-starttime);
 		return map;
 	}
 
@@ -107,18 +107,22 @@ public class TeamController {
 		return map;
 	}
 
+	// 对应处理 用户申请加入团队的请求
 	@ResponseBody
+	@RequestMapping(value = "/handleJoinTeamRequest.do", method = RequestMethod.POST)
 	public Map<String, Object> handleJoinTeamRequest(HttpServletRequest request, String agree,
 			JoinTeamMsg joinTeamMsg) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Boolean agree1 = Boolean.valueOf(agree);
 		String teamCreatorEmail = ((User) request.getSession().getAttribute("user")).getEmail();
-		boolean issuccess = teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(), joinTeamMsg.getTeamname(),
-				agree1);
+		boolean issuccess = teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(),
+				joinTeamMsg.getTeamname(), agree1);
 		if (issuccess) {
-			
-		}else {
-			
+			map.put("code", "success");
+			map.put("msg", "已同意");
+		} else {
+			map.put("code", "failed");
+			map.put("msg", "已拒绝");
 		}
 		return map;
 	}
