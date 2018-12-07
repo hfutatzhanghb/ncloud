@@ -104,11 +104,16 @@ public class TeamController {
 		}
 		return map;
 	}
-	
+
 	@ResponseBody
-	public Map<String , Object> handleJoinTeamRequest(HttpServletRequest request,){
-		
-		teamService.handleJoinTeamRequest(teamCreatorEmail, fromUsername, teamName, agree)
+	public Map<String, Object> handleJoinTeamRequest(HttpServletRequest request, String agree,
+			JoinTeamMsg joinTeamMsg) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Boolean agree1 = Boolean.valueOf(agree);
+		String teamCreatorEmail = ((User) request.getSession().getAttribute("user")).getEmail();
+		teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(), joinTeamMsg.getTeamname(),
+				agree1);
+		return map;
 	}
 
 }
