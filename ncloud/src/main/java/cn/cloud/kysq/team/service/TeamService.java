@@ -48,9 +48,12 @@ public class TeamService {
 		return null;
 	}
 
-	public int joinTeam(Team team) {
-		// TODO Auto-generated method stub
-		return 0;
+	/*
+	 * 用户申请加入Team
+	 */
+	public boolean applyjoinTeam(String fromusername, String tousername,  String msgcontent) {
+		boolean issuccess = teamDao.insertTeamJoinMsg(fromusername, tousername, msgcontent);
+		return issuccess;
 	}
 
 	public Team getTeamByTeamName(String distTeamname) {

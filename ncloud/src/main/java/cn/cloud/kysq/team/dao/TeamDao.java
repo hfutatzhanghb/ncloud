@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -103,5 +104,23 @@ public class TeamDao {
 		} else {
 			return query.get(0);
 		}
+	}
+
+	/**
+	 * 向 申请加团队消息表`team_join_msg`添加一条记录，申请加入团队
+	 */
+	public boolean insertTeamJoinMsg(String fromusername, String tousername, String msgcontent) {
+		String sql = "insert into team_join_msg (fromusername, tousername, msgcontent) values(?,?,?)";
+		try {
+			int updatestatus = jdbctemplate.update(sql, new Object[] { fromusername, tousername, msgcontent });
+			if (updatestatus != 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (DataAccessException e) {
+			return false;
+		}
+
 	}
 }

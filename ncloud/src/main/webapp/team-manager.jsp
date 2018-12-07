@@ -21,16 +21,15 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>/myresources/css/bootstrap.min.css" rel="stylesheet" />
-
+	<!-- AmaranJS CSS -->
+	<link href="<%=basePath%>/myresources/css/amaran.min.css" rel="stylesheet" />
+	<link href="<%=basePath%>/myresources/css/animate.min.css" rel="stylesheet" />
+	
     <!-- Custom CSS -->
     <link href="<%=basePath%>/myresources/css/sb-admin.css" rel="stylesheet" />
     <link href="<%=basePath%>/myresources/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
-    <link
-      href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
@@ -152,6 +151,7 @@
                   class="btn btn-primary pull-right"
                   data-toggle="modal"
                   data-target="#join_modal"
+                  id = "btn_jointeam"
                 >
                   <i class="fa fa-fw fa-plus"></i>&nbsp;加入团队
                 </button>
@@ -396,6 +396,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+    
+    <!-- AmaranJS Core -->
+    <script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
     <!-- Customer JavaScript -->
     <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
   </body>

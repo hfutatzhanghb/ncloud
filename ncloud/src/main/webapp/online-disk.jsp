@@ -27,6 +27,9 @@
     <link href="<%=basePath%>/myresources/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/dropzone.css" />
+    <!-- AmaranJS CSS -->
+	<link href="<%=basePath%>/myresources/css/amaran.min.css" rel="stylesheet" />
+	<link href="<%=basePath%>/myresources/css/animate.min.css" rel="stylesheet" />
     <link
       href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css"
       rel="stylesheet"
@@ -263,15 +266,13 @@
   
   <!-- /#wrapper -->
 
-  <!-- jQuery -->
-  <script src="<%=basePath%>/myresources/js/jquery.js"></script>
-  <script src="<%=basePath%>/myresources/js/online-disk.js"></script>
-<!--   <script type="text/javascript">
-
-  </script> -->
-  
-  <!-- Bootstrap Core JavaScript -->
-  <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
-  <script src="<%=basePath%>/myresources/js/dropzone.js"></script>
+	<!-- jQuery -->
+	<script src="<%=basePath%>/myresources/js/jquery.js"></script>
+	<script src="<%=basePath%>/myresources/js/online-disk.js"></script>
+	<!-- AmaranJS Core -->
+	<script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
+  	<!-- Bootstrap Core JavaScript -->
+	<script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+	<script src="<%=basePath%>/myresources/js/dropzone.js"></script>
 </body>
 </html>

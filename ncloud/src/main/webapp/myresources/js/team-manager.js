@@ -3,6 +3,10 @@
  */
 
 $(function() {
+	//不小心点击别的地方再进去，也把表单清掉。
+	$("#btn_jointeam").click(function(){
+		$("#searchteam_table").html("");
+	});
 	
 	//点击了加入团队对话框中的搜索按钮
 	$("#btn_searchteam").click(function() {
@@ -19,7 +23,7 @@ $(function() {
                     <th>操作</th>\
                   </tr>';
 				//$("#searchteam_table").append('<tr><td>'+data.team.teamName+'</td><td>'+data.team.teamCreatorName+'</td><td><button type="button" class="btn btn-primary">加入</button></td></tr>');
-				html=html+'<tr><td>'+data.team.teamName+'</td><td>'+data.team.teamCreatorName+'</td><td><button type="button" class="btn btn-primary" id="btn_shenqingjiaru">申请加入</button></td></tr>';
+				html=html+'<tr><td>'+data.team.teamName+'</td><td value="td_teamCreatorName">'+data.team.teamCreatorName+'</td><td><button type="button" class="btn btn-primary" id="btn_shenqingjiaru">申请加入</button></td></tr>';
 				$("#searchteam_table").html(html);
 				$("input[name='teamname']").val("");
 			}else if (data.code=="null") {
@@ -33,6 +37,38 @@ $(function() {
 	
 	//为加入团队对话框生成的团队搜索结果中的 申请加入按钮添加点击事件
 	$(document).on("click","#btn_shenqingjiaru",function(){
+		var relativepath = $("#ctxValue").attr("value");
+		$.post(
+			relativepath + 'applyJoinTeam.do',
+			{
+				tousername: $("td[value='td_teamCreatorName']").text(),
+				msgcontent: "申请加入"
+			},
+			function(data,status){
+				if(data.code=="success"){
+					$.amaran({
+					    content:{
+					        title:'通知',
+					        message:'申请成功',
+					        info:'',
+					        icon:'fa fa-check-square'
+					    },
+					    theme:'awesome ok'
+					});
+				}else if(data.code="failed"){
+					$.amaran({
+					    content:{
+					        title:'通知',
+					        //message:'申请成功',
+					        message: data.msg,
+					        info:'',
+					        icon:'fa fa-warning'
+					    },
+					    theme:'awesome error'
+					});
+				}
+			}
+		);
 		
 	});
 	
