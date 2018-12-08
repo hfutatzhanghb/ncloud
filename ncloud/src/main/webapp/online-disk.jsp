@@ -8,6 +8,7 @@
   + request.getServerName() + ":" + request.getServerPort()
   + path + "/";
 %>
+
 <!DOCTYPE html >
 <html lang="en">
   <head>
@@ -214,6 +215,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                	<tr></tr>
                 	<c:forEach items="${fileList}" var="iter_file">
                 	<tr>
                 		<c:if test="${iter_file.fileType==0 }">
@@ -249,9 +251,24 @@
                         <td>${iter_file.fileOwner }</td>
                 		
                 	</tr>
-                	</c:forEach>
                 	
-                </tbody>
+                	</c:forEach>
+						<tr id="paginate">
+							<ul class="pagination">
+								<li><a href="#" aria-label="Previous"> <span
+										aria-hidden="true">&laquo;</span>
+								</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#" aria-label="Next"> <span
+										aria-hidden="true">&raquo;</span>
+								</a></li>
+							</ul>
+						</tr>
+					</tbody>
 
             </table>
 
