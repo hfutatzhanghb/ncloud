@@ -83,28 +83,14 @@
 			<version>1.3.2</version>
 		</dependency>
 		<!-- ***** common END ***** -->
-		
+
 		<!-- ***** log4j START ***** -->
-<!-- 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			<version>1.6.0</version> </dependency> <dependency> <groupId>org.slf4j</groupId> 
+			<artifactId>slf4j-simple</artifactId> <version>1.7.7</version> </dependency> 
+			<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			<version>1.7.25</version> </dependency> <dependency> <groupId>log4j</groupId> 
+			<artifactId>log4j</artifactId> <version>1.2.16</version> </dependency> -->
 		<!-- ***** log4j END ***** -->
 		<!-- ***** Mybatis START ***** -->
 		<!-- https://mvnrepository.com/artifact/org.ow2.asm/asm -->
@@ -193,6 +179,12 @@
 		</dependency>
 		<!-- Jackson end -->
 
+		<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
 
 	</dependencies>
 
