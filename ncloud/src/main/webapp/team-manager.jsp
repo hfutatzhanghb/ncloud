@@ -128,9 +128,45 @@
                 >
               </li>
               <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能</a
+                <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_function" href="#"
+                   style="color:white"
+                ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能 <i class="fa fa-fw fa-caret-down"></i
+                ></a
                 >
+                <ul id="team_function" class="collapse in second_menu">
+                  <li>
+                    <a href="<%=basePath%>/doc/root.do" style="color:white"
+                    ><i class="fa fa-fw fa-files-o"></i> &nbsp;文档管理</a
+                    >
+                  </li>
+                  <li>
+                    <a href="<%=basePath%>task-manager.jsp" style="color:white"
+                    ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;任务协作</a
+                    >
+                  </li>
+                  <li class="active">
+                    <a href="#" style="color:white"
+                    ><i class="fa fa-fw fa-file-audio-o"></i> &nbsp;视频会议</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" style="color:white"
+                    ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;通讯录</a
+                    >
+                  </li>
+                  <li>
+                    <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team" href="#"
+                       style="color:white"
+                    ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能</a
+                    >
+
+                  </li>
+                  <li>
+                    <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
+                    ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a>
+                  </li>
+                </ul>
+
               </li>
               <li>
                 <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"

@@ -140,3 +140,9 @@ a:hover.breadlist {
   background: #dbedff;;
   color: #032f62;;
 }
+
+.second_menu > li > a {
+  display: block;
+  padding: 10px 15px 10px 58px;
+  text-decoration: none;
+}
