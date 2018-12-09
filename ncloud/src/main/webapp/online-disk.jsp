@@ -11,47 +11,55 @@
 
 <!DOCTYPE html >
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
 
-    <title>文档管理</title>
+<title>文档管理</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="<%=basePath%>/myresources/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap Core CSS -->
+<link href="<%=basePath%>/myresources/css/bootstrap.min.css"
+	rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="<%=basePath%>/myresources/css/sb-admin.css" rel="stylesheet" />
-    <link href="<%=basePath%>/myresources/css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/dropzone.css" />
-    <!-- AmaranJS CSS -->
-	<link href="<%=basePath%>/myresources/css/amaran.min.css" rel="stylesheet" />
-	<link href="<%=basePath%>/myresources/css/animate.min.css" rel="stylesheet" />
-    <link
-      href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/styles.css" />
-    <!-- Custom Fonts -->
+<!-- Custom CSS -->
+<link href="<%=basePath%>/myresources/css/sb-admin.css" rel="stylesheet" />
+<link href="<%=basePath%>/myresources/css/styles.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/myresources/css/exDemoTasks.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/myresources/css/dropzone.css" />
+<!-- AmaranJS CSS -->
+<link href="<%=basePath%>/myresources/css/amaran.min.css"
+	rel="stylesheet" />
+<link href="<%=basePath%>/myresources/css/animate.min.css"
+	rel="stylesheet" />
+<link
+	href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="<%=basePath%>/myresources/css/simple-sidebar.css"
+	rel="stylesheet" />
+<link href="<%=basePath%>/myresources/css/bootstrap-table.css"
+	rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/myresources/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/myresources/css/styles.css" />
+<!-- Custom Fonts -->
 
-    <!--
+<!--
       HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
   <nav id="nav">
     <div class="logo">
       <a href="index1.html"><img id="logo" src="assets/logo.png" /></a>
@@ -205,7 +213,7 @@
                 <button href="www.baidu.com" class="btn btn-link" style="position:relative; left: 5px; bottom: 5px;">返回上一级</button>
             </div> -->
             <!-- /.row -->
-            <table class="table .table-striped" style="table-layout:fixed">
+            <table class="table .table-striped" data-toggle="table" data-pagination="true" style="table-layout:fixed">
                 <thead>
                     <tr>
                         <th>文件名</th>
@@ -215,7 +223,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<tr></tr>
                 	<c:forEach items="${fileList}" var="iter_file">
                 	<tr>
                 		<c:if test="${iter_file.fileType==0 }">
@@ -253,7 +260,7 @@
                 	</tr>
                 	
                 	</c:forEach>
-						<tr id="paginate">
+<!-- 						<tr id="paginate">
 							<ul class="pagination">
 								<li><a href="#" aria-label="Previous"> <span
 										aria-hidden="true">&laquo;</span>
@@ -267,7 +274,7 @@
 										aria-hidden="true">&raquo;</span>
 								</a></li>
 							</ul>
-						</tr>
+						</tr> -->
 					</tbody>
 
             </table>
@@ -288,8 +295,12 @@
 	<script src="<%=basePath%>/myresources/js/online-disk.js"></script>
 	<!-- AmaranJS Core -->
 	<script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
-  	<!-- Bootstrap Core JavaScript -->
+	<!-- Bootstrap Core JavaScript -->
 	<script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+	<!-- Bootstrap Table Core -->
+	<script src="<%=basePath%>/myresources/js/bootstrap-table.js"></script>
+	<script src="<%=basePath%>/myresources/js/bootstrap-table-zh-CN.js"></script>
+	<!-- Dropzone 文件上传组件 -->
 	<script src="<%=basePath%>/myresources/js/dropzone.js"></script>
 </body>
 </html>

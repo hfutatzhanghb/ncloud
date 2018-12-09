@@ -9,11 +9,5 @@
 <title>Hello</title>
 </head>
 <body>
-${loginteam.teamName } </br>
-${loginteam.teamID} </br>
-${user.username }</br>
-${user.email } </br>
-
-Test OK
 </body>
 </html>

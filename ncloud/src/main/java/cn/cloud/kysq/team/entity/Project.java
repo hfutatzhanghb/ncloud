@@ -12,14 +12,16 @@ import java.util.Date;
 public class Project {
 
 	private Integer projectID; // 自增ID
-	private Integer teamID; // 项目所属团队ID
+	private String projectName; // 项目名
+	private String projectCreatorEmail; // 项目创建人用户名
 	private String projectCreatorName; // 项目创建人用户名
 	private Date projectCreatorTime; // 项目创建时间
-	private Integer projectDeleteFlag; // 项目删除标记，0：有效，1：删除
-	private ArrayList<Stage> stageList; // 项目的阶段列表
+	private Integer teamID; // 项目所属团队ID
+	private String teamName; // 项目所属团队名称
+	private Integer isDelete; // 项目删除标记，0：有效，1：删除
+	private Integer isFinished; // 项目中的所有任务是否完成。
 
 	public Project() {
-		super();
 	}
 
 	public Integer getProjectID() {
@@ -30,12 +32,20 @@ public class Project {
 		this.projectID = projectID;
 	}
 
-	public Integer getTeamID() {
-		return teamID;
+	public String getProjectName() {
+		return projectName;
 	}
 
-	public void setTeamID(Integer teamID) {
-		this.teamID = teamID;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getProjectCreatorEmail() {
+		return projectCreatorEmail;
+	}
+
+	public void setProjectCreatorEmail(String projectCreatorEmail) {
+		this.projectCreatorEmail = projectCreatorEmail;
 	}
 
 	public String getProjectCreatorName() {
@@ -54,19 +64,36 @@ public class Project {
 		this.projectCreatorTime = projectCreatorTime;
 	}
 
-	public Integer getProjectDeleteFlag() {
-		return projectDeleteFlag;
+	public Integer getTeamID() {
+		return teamID;
 	}
 
-	public void setProjectDeleteFlag(Integer projectDeleteFlag) {
-		this.projectDeleteFlag = projectDeleteFlag;
+	public void setTeamID(Integer teamID) {
+		this.teamID = teamID;
 	}
 
-	public ArrayList<Stage> getStageList() {
-		return stageList;
+	public String getTeamName() {
+		return teamName;
 	}
 
-	public void setStageList(ArrayList<Stage> stageList) {
-		this.stageList = stageList;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
+
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public Integer getIsFinished() {
+		return isFinished;
+	}
+
+	public void setIsFinished(Integer isFinished) {
+		this.isFinished = isFinished;
+	}
+
 }
