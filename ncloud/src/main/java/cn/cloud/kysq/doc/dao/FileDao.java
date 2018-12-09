@@ -14,12 +14,22 @@ import org.springframework.stereotype.Repository;
 
 import cn.cloud.kysq.doc.entity.FileInfo;
 
+/**
+ * 文档管理部分的Dao
+ * @author zhb
+ *
+ */
 @Repository
 public class FileDao {
 
 	@Autowired
 	private JdbcTemplate jdbctemplate;
-
+	
+	/**
+	 * 根绝文件路径找到文件
+	 * @param filename
+	 * @return
+	 */
 	public List<FileInfo> findAllWithName(String filename) {
 		List<FileInfo> fileList = new ArrayList<FileInfo>();
 

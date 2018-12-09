@@ -139,7 +139,7 @@
                   </ul>
     </div>
 
-
+		<!-- 上传文件对话框 -->
 		<div class="modal fade" id="upload-dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -171,7 +171,38 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal -->
-    
+    <!-- 创建文件夹对话框 -->
+    <div class="modal fade" id="createfolder-dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">新建文件夹</h4>
+					</div>
+					<div class="modal-body">
+						<form action="<%=basePath%>/doc/createfolder.do?"
+							id="uploadfileform"  class="dropzone"
+							enctype="multipart/form-data">
+
+							<!-- <input type="file" name="file" id="btn_file" multiple> -->
+							 
+						</form>
+						<!--style="display: none"  -->
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+						<button type="button" class="btn btn-default" onclick="closeUploadFileDialog()"> 关闭</button>
+						<button type="button" class="btn btn-default disabled" id ="submitbutton">上传</button>
+						
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		
     
     <div id="page-content-wrapper">
         <div class="container-fluid">
@@ -189,7 +220,7 @@
                             </div><!-- /input-group -->
                           </div><!-- /.col-lg-6 -->
                         <button class="btn btn-primary pull-right"><i class="fa fa-fw fa-plus"></i>&nbsp;新建文件夹</button>
-                        <button class="btn btn-primary pull-right" style="margin-right:10px;" onclick="Open_dialog()"><i class="fa fa-fw fa-cloud-upload"></i>&nbsp;上传文件</button>
+                        <button class="btn btn-primary pull-right" style="margin-right:10px;" onclick="Open_UploadFiledialog()"><i class="fa fa-fw fa-cloud-upload"></i>&nbsp;上传文件</button>
 
 						</h1>
                     <input type="hidden" id="forbreadcrumbpath" value="${breadcrumb.pathStr}" />
@@ -246,9 +277,6 @@
                                 >
                                 <span class="fa fa-trash yincang" style="float:left">&nbsp;&nbsp;</span>
                             </a>
-                            <a class="link_icon" href="javascript:void(0)" title="分享" data-toggle="modal" data-target="#shareModal">
-                                <span class="fa fa-share-alt yincang" style="float:left">&nbsp;&nbsp;</span>
-                            </a>
                             <a class="link_icon" title="下载" href="javascript:void(0)" onclick="downloadfile(this)">
                                 <span class="fa fa-cloud-download yincang" style="float:left">&nbsp;&nbsp;</span>
                             </a>
@@ -260,21 +288,6 @@
                 	</tr>
                 	
                 	</c:forEach>
-<!-- 						<tr id="paginate">
-							<ul class="pagination">
-								<li><a href="#" aria-label="Previous"> <span
-										aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
-							</ul>
-						</tr> -->
 					</tbody>
 
             </table>

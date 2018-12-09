@@ -51,14 +51,14 @@ $(function() {
 	// location.reload();
 });
 
-function Open_dialog() {
+function Open_UploadFiledialog() {
 	$("#upload-dialog").modal("toggle");
 }
 
 function closeUploadFileDialog() {
 	location.reload();
 }
-
+	
 function downloadfile(obj) {
 	// alert($(this).parents("tr").children(":first").html());
 	console.log($(obj).parents("tr").children(":first").text().trim());

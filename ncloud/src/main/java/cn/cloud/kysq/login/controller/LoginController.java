@@ -11,12 +11,13 @@ import cn.cloud.kysq.login.service.LoginService;
 import cn.cloud.kysq.team.entity.UserJoinTeamDTO;
 
 @Controller
+@RequestMapping(value="/login")
 public class LoginController {
 
 	@Autowired
 	LoginService loginService;
 
-	@RequestMapping(value = "login/login.do")
+	@RequestMapping(value = "/login.do")
 	public String login(HttpServletRequest request, @RequestParam(value = "email") String email,
 			@RequestParam(value = "password") String password) {
 

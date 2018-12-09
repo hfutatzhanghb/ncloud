@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.cloud.kysq.doc.dao.FileDao;
 import cn.cloud.kysq.doc.entity.FileBreadCrumbNav;
 import cn.cloud.kysq.doc.entity.FileInfo;
+import cn.cloud.kysq.login.entity.User;
+import cn.cloud.kysq.team.entity.Team;
 
 @Service
 public class FileService {
@@ -96,6 +99,21 @@ public class FileService {
 			return status;
 		}
 
+	}
+
+	@Transactional
+	public boolean createFolder(FileInfo fileInfo, User currentuser, Team loginteam, String parentID) {
+
+		int fileID = fileDao.selectFileIdByFilePath(fileInfo.getFilePath());
+		if (fileID != 0) {
+			return false;
+		} else {
+			fileDao.insertFileInfo(fileInfo.getFileName(), fileInfo.getFileOwner(), 0L, fileInfo.getFileCreateTime(), 0,
+					String.valueOf(loginteam.getTeamID()), fileInfo.getFilePath());
+			fileID = fileDao.selectFileIdByFilePath(fileInfo.getFilePath());
+			fileDao.insertFileRelationShip(fileID, fileInfo.getFileName(), parentID);
+			return true;
+		}
 	}
 
 }
