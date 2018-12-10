@@ -24,6 +24,7 @@ public class TeamService {
 
 	@Autowired
 	private TeamDao teamDao;
+	@Autowired
 	private UserDao userDao;
 
 	/*
@@ -86,7 +87,28 @@ public class TeamService {
 		Team team = teamDao.selectTeamByTeamName(distTeamname);
 		return team;
 	}
-	
+
+	/**
+	 * 用户是否是团队创建者
+	 * 
+	 * @return
+	 */
+	public boolean isUserATeamCreator(Team currentTeam, User currentUser) {
+		Team selectOneTeamCreatedByUser = teamDao.selectOneTeamCreatedByUser(currentUser, currentTeam);
+		if (selectOneTeamCreatedByUser != null) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public List<User> getAllJoinRequestByUserAndTeam(User currentUser, Team currentTeam) {
+		List<User> applierNames = teamDao.selectAllWantToJoinTeamUserName(currentUser.getEmail(),
+				currentTeam.getTeamName());
+		return applierNames;
+	}
+
 	/**
 	 * 得到团队
 	 */

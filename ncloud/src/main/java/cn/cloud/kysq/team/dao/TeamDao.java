@@ -3,17 +3,17 @@ package cn.cloud.kysq.team.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 import cn.cloud.kysq.login.entity.User;
-import cn.cloud.kysq.team.entity.JoinTeamMsg;
 import cn.cloud.kysq.team.entity.Team;
 
 /**
@@ -65,13 +65,36 @@ public class TeamDao {
 	}
 
 	/**
-	 * 查询User的所有Team
+	 * 查询User的所相关的Team
 	 */
 	public List<Team> selectALLTeamsByUser(User user) {
 		String sql = "select * from team where team_name in "
 				+ "(select teamname from user_team_relationship where useremail = ?)";
 		List<Team> teamlist = jdbctemplate.query(sql, new Object[] { user.getEmail() }, new TeamRowMapper());
 		return teamlist;
+
+	}
+
+	public Team selectOneTeamCreatedByUser(User user, Team team) {
+		String sql = "select team_name,team_creatorName from team where team_name = ? and  team_creatorName= ?";
+
+		Team teamResult = null;
+		try {
+			teamResult = jdbctemplate.queryForObject(sql, new Object[] { team.getTeamName(), user.getEmail() },
+					new RowMapper<Team>() {
+
+						@Override
+						public Team mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Team team1 = new Team();
+							team1.setTeamName(rs.getString(1));
+							team1.setTeamCreatorName(rs.getString(2));
+							return team1;
+						}
+					});
+			return teamResult;
+		} catch (EmptyResultDataAccessException e) {
+			return teamResult;
+		}
 
 	}
 
@@ -132,7 +155,7 @@ public class TeamDao {
 	 */
 	public boolean UpdateTeamJoinMsg(String currUserEmail, String fromUsername, String teamName) {
 
-		String sql = "update team_join_msg set ishandle = 1 where idhandle =0 and fromusername = ? and touseremail=? and teamname=?";
+		String sql = "update team_join_msg set ishandle = 1 where ishandle =0 and fromusername = ? and touseremail=? and teamname=?";
 		try {
 			int updatestatus = jdbctemplate.update(sql, new Object[] { fromUsername, currUserEmail, teamName });
 			if (updatestatus != 0) {
@@ -149,11 +172,19 @@ public class TeamDao {
 	/**
 	 * 从`team_join_msg`获得所有申请加入团队的用户名字
 	 */
-	public List<String> selectAllWantToJoinTeamUserName(String teamCreatorEmail, String teamName) {
-		List<String> result = new ArrayList<String>();
+	public List<User> selectAllWantToJoinTeamUserName(String teamCreatorEmail, String teamName) {
+
 		String sql = "select fromusername from team_join_msg where touseremail =? and ishandle = 0 and teamname=?";
-		List<String> wantToJoinList = jdbctemplate.queryForList(sql, new Object[] { teamCreatorEmail, teamName },
-				String.class);
+		List<User> wantToJoinList = jdbctemplate.query(sql, new Object[] { teamCreatorEmail, teamName },
+				new RowMapper<User>() {
+
+					@Override
+					public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+						User user = new User();
+						user.setUsername(rs.getString(1));
+						return user;
+					}
+				});
 		return wantToJoinList;
 	}
 }

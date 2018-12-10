@@ -25,6 +25,7 @@ public class UserDao {
 
 		String sql = "select username,email from users where username = ?";
 		User user = jdbcTemplate.queryForObject(sql, new Object[] { username }, new MyUserRowMapper());
+		System.out.println(user);
 		return user;
 	}
 
@@ -33,8 +34,8 @@ public class UserDao {
 		@Override
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
-			user.setUsername(rs.getString("username"));
-			user.setEmail(rs.getString("email"));
+			user.setUsername(rs.getString(1));
+			user.setEmail(rs.getString(2));
 			return user;
 		}
 

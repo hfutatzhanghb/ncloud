@@ -1,5 +1,7 @@
 package cn.cloud.kysq.team.controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
 
 import cn.cloud.kysq.login.entity.User;
 import cn.cloud.kysq.team.entity.JoinTeamMsg;
@@ -107,14 +111,40 @@ public class TeamController {
 		return map;
 	}
 
+	// 对应获得申请加入团队的请求列表
+	@RequestMapping(value = "/getallJoinRequest.do")
+	public String getallJoinRequest(HttpServletRequest request) {
+		User currentUser = (User) request.getSession().getAttribute("user");
+		Team currentTeam = (Team) request.getSession().getAttribute("loginteam");
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean userIsTeamCreator = teamService.isUserATeamCreator(currentTeam,currentUser);
+		if (userIsTeamCreator) {
+			List<User> applierName=teamService.getAllJoinRequestByUserAndTeam(currentUser, currentTeam);
+			request.getSession().setAttribute("isCreator", true);
+			request.getSession().setAttribute("requestUserNames", applierName);
+//			map.put("code", "success");
+//			map.put("msg", JSONArray.toJSON(applierName));
+			System.out.println(JSONArray.toJSON(applierName));
+		}else {
+			//不是团队创建者
+			request.getSession().setAttribute("isCreator", false);
+//			map.put("code", "failed");
+//			map.put("msg", "您没有权限处理此请求");
+		}
+		return "team/team-joinrequest-manage";
+	}
+
 	// 对应处理 用户申请加入团队的请求
 	@ResponseBody
 	@RequestMapping(value = "/handleJoinTeamRequest.do", method = RequestMethod.POST)
 	public Map<String, Object> handleJoinTeamRequest(HttpServletRequest request, String agree,
 			JoinTeamMsg joinTeamMsg) {
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		Boolean agree1 = Boolean.valueOf(agree);
 		String teamCreatorEmail = ((User) request.getSession().getAttribute("user")).getEmail();
+		
+		System.out.println("fromusername:"+joinTeamMsg.getFromusername()+" teamname:"+joinTeamMsg.getTeamname()+" teamCreatorEmail:"+teamCreatorEmail);
 		boolean issuccess = teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(),
 				joinTeamMsg.getTeamname(), agree1);
 		if (issuccess) {

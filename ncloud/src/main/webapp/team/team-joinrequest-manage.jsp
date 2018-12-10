@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
     <link href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
+    <link href="<%=basePath%>/myresources/css/bootstrap-table.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
 
@@ -111,7 +112,7 @@
                     >
                   </li>
 					<li>
-                    <a href="<%=basePath%>/team/getallJoinRequest.do" style="color:white"
+                    <a href="<%=basePath%>/team/" style="color:white"
                     ><i class="fa fa-fw fa-list"></i> &nbsp;申请处理</a
                     >
                   </li>
@@ -159,7 +160,7 @@
           <!-- 隐藏标签 ,判断是否进行Ajax轮询处理加入团队请求操作-->
           <input type="hidden" id= "id_forteam_creatorEmail" value="${loginteam.teamCreatorName}"/>
           <input type="hidden" id= "id_foruser_email" value="${user.email}"/>
-          
+          <input type="hidden" id= "id_forteam_name" value="${loginteam.teamName }">
           <div id="disappare" style="display:none;">
             <h2>切换成功</h2>
             <p>2秒后自动隐藏此内容</p>
@@ -168,24 +169,30 @@
           <!-- Three columns of text below the carousel -->
           <div class="row">
             <div class="col-xs-1 col-md-2"></div>
-            <div class="panel panel-default col-xs-10 col-md-8 center">
-              <table class="table">
+            <div class="  col-xs-10 col-md-8 center">
+            <c:if test="${isCreator==true }">
+            	<table class="table .table-bordered"  data-striped="true" data-toggle="table" data-pagination="true" style="table-layout:fixed">
+                <thead>
+	                <tr>
+	                  <th data-field="username" >申请人</th>
+	                  <th data-field="option">操作</th>    
+	                </tr>
+                </thead>
+                <c:forEach items="${requestUserNames}" var="iter_team" >
                 <tr>
-                  <th>团队名</th>
-                  <th>创建者邮箱</th>
-                  <th></th>
-                </tr>
-                
-                <c:forEach items="${teams}" var="iter_team" >
-                <tr>
-                	<td>${iter_team.teamName }</td>
-                	<td>${iter_team.teamCreatorName }</td>
+                	<td value='td_applierUserName'>${iter_team.username }</td>
                 	<td>
-                    <button type="button" class="btn btn-primary" onclick="changeTeam(this)">进入</button>
+                    <button type="button" class="btn btn-primary" onclick="passRequest(this)">同意申请</button>
+                    <button type="button" class="btn btn-danger" onclick="refuseRequest(this)">拒绝申请</button>
                   </td>
                 </tr>
                 </c:forEach>
               </table>
+            </c:if>
+			<c:if test="${isCreator==false }">
+            	<h3>您没有此项权限</h3>
+            </c:if>
+              
             </div>
           </div>
           <!-- /.row -->
@@ -388,7 +395,11 @@
     <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
     <!-- AmaranJS Core -->
     <script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
+    
+	<!-- Bootstrap Table Core -->
+	<script src="<%=basePath%>/myresources/js/bootstrap-table.js"></script>
+	<script src="<%=basePath%>/myresources/js/bootstrap-table-zh-CN.js"></script>
     <!-- Customer JavaScript -->
-    <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
+    <script src="<%=basePath%>/myresources/js/team-joinrequest-manage.js"></script>
   </body>
 </html>

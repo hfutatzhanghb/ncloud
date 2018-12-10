@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
     <link href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
+    <link href="<%=basePath%>/myresources/css/bootstrap-table.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
 
@@ -111,7 +112,7 @@
                     >
                   </li>
 					<li>
-                    <a href="<%=basePath%>/team/getallJoinRequest.do" style="color:white"
+                    <a href="<%=basePath%>/team/" style="color:white"
                     ><i class="fa fa-fw fa-list"></i> &nbsp;申请处理</a
                     >
                   </li>
@@ -388,6 +389,9 @@
     <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
     <!-- AmaranJS Core -->
     <script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
+   	<!-- Bootstrap Table Core -->
+	<script src="<%=basePath%>/myresources/js/bootstrap-table.js"></script>
+	<script src="<%=basePath%>/myresources/js/bootstrap-table-zh-CN.js"></script>
     <!-- Customer JavaScript -->
     <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
   </body>
