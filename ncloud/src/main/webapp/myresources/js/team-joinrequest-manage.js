@@ -111,7 +111,6 @@ function changeTeam(obj) {
 }
 
 function passRequest(obj) {
-	console.log(obj);
 	var agree = "true";
 	var relativepath = $("#ctxValue").attr("value");
 	$.post(relativepath + "handleJoinTeamRequest.do", {
@@ -137,4 +136,22 @@ function passRequest(obj) {
 function refuseRequest(obj) {
 	var agree = "false";
 	var relativepath = $("#ctxValue").attr("value");
+	$.post(relativepath + "handleJoinTeamRequest.do", {
+		agree : agree,
+		fromusername : $("td[value='td_applierUserName']").text(),
+		teamname : $("#id_forteam_name").attr("value")
+	}, function(data, status) {
+		if (data.code == "success") {
+			$.amaran({
+				content : {
+					title : '通知',
+					message : data.msg,
+					info : '',
+					icon : 'fa fa-check-square'
+				},
+				theme : 'awesome ok'
+			});
+			$(obj).parent().parent().remove();
+		}
+	});
 }
