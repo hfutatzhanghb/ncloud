@@ -98,7 +98,7 @@
               </li>
               <li>
                 <a href="javascript:;" style="color:white">
-                	<i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能 </a>
+                	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
               </li>
               <li>
                 <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_manager_secondmenu"
