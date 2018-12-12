@@ -51,6 +51,11 @@ $(function() {
 	// location.reload();
 });
 
+function Open_CreateFolderDialog(){
+	$("#createfoldername").val("");
+	$("#createfolder-dialog").modal("toggle");
+}
+
 function Open_UploadFiledialog() {
 	$("#upload-dialog").modal("toggle");
 }
@@ -58,7 +63,23 @@ function Open_UploadFiledialog() {
 function closeUploadFileDialog() {
 	location.reload();
 }
+
+function createFolder(){
+	var input2 = $("<input>");
+	input2.attr("type", "hidden");
+	input2.attr("name", "parentID");
+	var ids = $("#forbreadcrumbid").attr("value").split(",");
+	input2.attr("value", ids[ids.length-1]);
+	//console.log(ids[ids.length-1]);
+	$("#createfolder_form").append(input2);
+	console.log ($("#createfolder_form"));
+	// 提交表单
+	$("#createfolder_form").submit();
 	
+	//$("#createfolde_submitbutton")
+}
+
+
 function downloadfile(obj) {
 	// alert($(this).parents("tr").children(":first").html());
 	console.log($(obj).parents("tr").children(":first").text().trim());

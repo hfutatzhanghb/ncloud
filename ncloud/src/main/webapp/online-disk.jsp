@@ -171,6 +171,7 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal -->
+		
     <!-- 创建文件夹对话框 -->
     <div class="modal fade" id="createfolder-dialog">
 			<div class="modal-dialog">
@@ -183,18 +184,21 @@
 					</div>
 					<div class="modal-body">
 						<form action="<%=basePath%>/doc/createfolder.do?"
-							id="uploadfileform"  class="dropzone"
-							enctype="multipart/form-data">
-
-							<!-- <input type="file" name="file" id="btn_file" multiple> -->
-							 
+							id="createfolder_form" class="form-horizontal" method="post">
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-2 control-label">文件夹名：</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" name="foldername" id="createfoldername"
+										placeholder="请输入文件夹名">
+								</div>
+							</div>
+							
 						</form>
-						<!--style="display: none"  -->
 					</div>
 					<div class="modal-footer">
 						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
-						<button type="button" class="btn btn-default" onclick="closeUploadFileDialog()"> 关闭</button>
-						<button type="button" class="btn btn-default disabled" id ="submitbutton">上传</button>
+						<!-- <button type="button" class="btn btn-default" onclick="closeUploadFileDialog()"> 关闭</button> -->
+						<button type="button" class="btn btn-default" id ="createfolde_submitbutton" onclick="createFolder()">创建文件夹</button>
 						
 					</div>
 				</div>
@@ -219,7 +223,7 @@
                               </span>
                             </div><!-- /input-group -->
                           </div><!-- /.col-lg-6 -->
-                        <button class="btn btn-primary pull-right"><i class="fa fa-fw fa-plus"></i>&nbsp;新建文件夹</button>
+                        <button class="btn btn-primary pull-right" onclick="Open_CreateFolderDialog()"><i class="fa fa-fw fa-plus"></i>&nbsp;新建文件夹</button>
                         <button class="btn btn-primary pull-right" style="margin-right:10px;" onclick="Open_UploadFiledialog()"><i class="fa fa-fw fa-cloud-upload"></i>&nbsp;上传文件</button>
 
 						</h1>
@@ -291,8 +295,6 @@
 					</tbody>
 
             </table>
-
-
 
         </div>
       <!-- /.container-fluid -->

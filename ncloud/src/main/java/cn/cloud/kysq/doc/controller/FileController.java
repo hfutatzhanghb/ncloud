@@ -50,7 +50,23 @@ public class FileController {
 		}
 		return "online-disk";
 	}
-
+	//对应创建文件夹的请求
+	@RequestMapping(value="createfolder.do",method = RequestMethod.POST)
+	public String createFolder(HttpServletRequest request ,@RequestParam("parentID") String parentID, @RequestParam("foldername")String foldername) {
+		FileInfo fileInfo = new FileInfo();
+		Integer teamID = ((Team)request.getSession().getAttribute("loginteam")).getTeamID();
+		String filePath = request.getSession().getServletContext().getRealPath("/WEB-INF/") + teamID+"\\"+foldername;
+		fileInfo.setFileName(foldername);
+		fileInfo.setFilePath(filePath);
+		fileInfo.setFileOwner(((User)request.getSession().getAttribute("user")).getUsername());
+		fileInfo.setFileCreateTime(new Date());
+		System.out.println(parentID);
+		fileService.createFolder(fileInfo, (User)request.getSession().getAttribute("user"),(Team) request.getSession().getAttribute("loginteam"), parentID);
+		System.out.println(parentID);
+		//return "online-disk";
+		return "redirect:/doc/root.do";
+	}
+	
 	@RequestMapping(value = "/getsubfiles.do")
 	public String getSubFilesByFileID(HttpServletRequest request, @RequestParam(value = "fileID") String fileID,
 			@RequestParam(value = "curPath") String curpath, @RequestParam(value = "pathStr") String pathStr,
@@ -77,7 +93,7 @@ public class FileController {
 		}
 		return "online-disk";
 	}
-
+	
 	@RequestMapping(value = "uploadfile.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Integer> uploadfile(HttpServletRequest request, @RequestParam("parentID") String parentID,
@@ -147,5 +163,7 @@ public class FileController {
 		out.close();
 		return null;
 	}
+	
 
+	
 }

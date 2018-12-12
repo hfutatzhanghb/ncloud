@@ -8,11 +8,6 @@
 	<name>ncloud</name>
 	<description>ncloud</description>
 
-	<!-- <repositories> <repository> <id>nexus</id> <name>Nexus</name> <url>http://10.122.127.16:8081/nexus/content/groups/public/</url> 
-		<url>http://maven.aliyun.com/nexus/content/groups/public/</url> <releases> 
-		<enabled>true</enabled> </releases> <snapshots> <enabled>false</enabled> 
-		</snapshots> </repository> </repositories> -->
-
 	<properties>
 		<spring-version>4.1.6.RELEASE</spring-version>
 		<hibernate-version>4.3.6.Final</hibernate-version>
