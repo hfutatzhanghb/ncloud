@@ -6,11 +6,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import com.alibaba.fastjson.JSON;
 
 import cn.cloud.kysq.doc.entity.FileInfo;
 
@@ -154,11 +157,28 @@ public class FileDao {
 			return query.get(0).getFileID();
 		}
 	}
-
+	
+	/**
+	 * 向文件关系表中插入一条记录。
+	 * @return
+	 */
 	public int insertFileRelationShip(Integer fileID, String fileName, String parentID) {
 		String sql = "insert into file_relationship(fileID,fileName,fileParentID) values(?,?,?)";
 		int update = jdbctemplate.update(sql, new Object[] { fileID, fileName, parentID });
 		return update;
+	}
+	
+	/**
+	 * 根据文件名在团队里进行模糊搜索
+	 */
+	public List<FileInfo> selectFilesByFileNameandTeamID(Integer teamID, String fileName){
+		String teamid = String.valueOf(teamID);
+		String sql ="select * from file_detail where fileofTeam= ? and fileName = ?";
+		List<Map<String, Object>> queryForList = jdbctemplate.queryForList(sql, new Object[] {teamid,fileName});
+		Object json = JSON.toJSON(queryForList);
+		System.out.println(queryForList);
+		System.out.println(json);
+		return null;
 	}
 
 }

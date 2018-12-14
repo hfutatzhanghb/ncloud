@@ -1,6 +1,7 @@
 package cn.cloud.kysq.team.service;
 
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,9 @@ public class TeamService {
 	public boolean createTeam(User creator, Team team) {
 
 		boolean insertTeam = teamDao.insertTeam(creator, team);
+		Integer teamID = teamDao.selectTeamByTeamName(team.getTeamName()).getTeamID();
 		String teamName = team.getTeamName();
-		boolean insertUserToTeam = teamDao.insertUserToTeam(creator, teamName);
+		boolean insertUserToTeam = teamDao.insertUserToTeam(creator, teamName, String.valueOf(teamID));
 		return insertTeam && insertUserToTeam;
 	}
 
@@ -53,13 +55,14 @@ public class TeamService {
 	 * @return true：同意且操作成功 false：拒绝申请 或者 操作失败
 	 */
 	@Transactional
-	public boolean handleJoinTeamRequest(String teamCreatorEmail, String fromUsername, String teamName, Boolean agree) {
+	public boolean handleJoinTeamRequest(String teamCreatorEmail, String fromUsername, String teamName, Boolean agree,
+			String teamID) {
 		if (agree) {
 			// 1.将消息状态变为已处理
 			boolean updateTeamJoinMsgStatus = teamDao.UpdateTeamJoinMsg(teamCreatorEmail, fromUsername, teamName);
 			// 2.向user_team_relationship里插入一条记录
 			User wantToUser = userDao.selectUserByUserName(fromUsername);
-			boolean insertUserToTeamstatus = teamDao.insertUserToTeam(wantToUser, teamName);
+			boolean insertUserToTeamstatus = teamDao.insertUserToTeam(wantToUser, teamName, teamID);
 			if (updateTeamJoinMsgStatus && insertUserToTeamstatus) {
 				return true;
 			} else {
@@ -76,6 +79,8 @@ public class TeamService {
 	 * 用户申请加入Team
 	 */
 	public boolean applyjoinTeam(String fromusername, String tousername, String msgcontent, String teamname) {
+
+		System.out.printf("%s,%s,%s,%s", fromusername, tousername, msgcontent, teamname);
 		boolean issuccess = teamDao.insertTeamJoinMsg(fromusername, tousername, msgcontent, teamname);
 		return issuccess;
 	}
@@ -110,6 +115,25 @@ public class TeamService {
 	}
 
 	/**
-	 * 得到团队
+	 * 解散团队
 	 */
+	@Transactional
+	public boolean dissolveTeam(User currentUser, Team dissolveTeam) {
+
+		boolean isCreator = isUserATeamCreator(dissolveTeam, currentUser);
+		if (isCreator) {
+			try {
+				teamDao.deleteTeamByTeamID(String.valueOf(dissolveTeam.getTeamID()));
+				teamDao.deleteUserandTeamRelationshipByTeamID(String.valueOf(dissolveTeam.getTeamID()));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+
+		} else {
+			System.out.println("此用户没有权限解散团队");
+			return false;
+		}
+	}
+
 }

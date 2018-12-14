@@ -113,9 +113,11 @@ function changeTeam(obj) {
 function passRequest(obj) {
 	var agree = "true";
 	var relativepath = $("#ctxValue").attr("value");
+	
+	console.log();
 	$.post(relativepath + "handleJoinTeamRequest.do", {
 		agree : agree,
-		fromusername : $("td[value='td_applierUserName']").text(),
+		fromusername : $(obj).parents("tr:last").children(":first").text(),
 		teamname : $("#id_forteam_name").attr("value")
 	}, function(data, status) {
 		if (data.code == "success") {

@@ -58,6 +58,7 @@ public class LoginDao {
 	 * @return
 	 */
 	public List<Team> findTeamsByUsername(String username) {
+		
 		String sql = "select * from team where team_name in "
 				+ "(select teamname from user_team_relationship where username = ?)";
 		List<Team> result = jdbctemplate.query(sql, new Object[] { username }, new TeamRowMapper());

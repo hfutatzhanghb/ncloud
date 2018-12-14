@@ -116,4 +116,9 @@ public class FileService {
 		}
 	}
 
+	public void selectFilesByFileNameandTeamID(Integer teamID, String string) {
+		// TODO
+		fileDao.selectFilesByFileNameandTeamID(teamID, string);
+	}
+
 }

@@ -117,19 +117,19 @@ public class TeamController {
 		User currentUser = (User) request.getSession().getAttribute("user");
 		Team currentTeam = (Team) request.getSession().getAttribute("loginteam");
 		Map<String, Object> map = new HashMap<String, Object>();
-		boolean userIsTeamCreator = teamService.isUserATeamCreator(currentTeam,currentUser);
+		boolean userIsTeamCreator = teamService.isUserATeamCreator(currentTeam, currentUser);
 		if (userIsTeamCreator) {
-			List<User> applierName=teamService.getAllJoinRequestByUserAndTeam(currentUser, currentTeam);
+			List<User> applierName = teamService.getAllJoinRequestByUserAndTeam(currentUser, currentTeam);
 			request.getSession().setAttribute("isCreator", true);
 			request.getSession().setAttribute("requestUserNames", applierName);
-//			map.put("code", "success");
-//			map.put("msg", JSONArray.toJSON(applierName));
+			// map.put("code", "success");
+			// map.put("msg", JSONArray.toJSON(applierName));
 			System.out.println(JSONArray.toJSON(applierName));
-		}else {
-			//不是团队创建者
+		} else {
+			// 不是团队创建者
 			request.getSession().setAttribute("isCreator", false);
-//			map.put("code", "failed");
-//			map.put("msg", "您没有权限处理此请求");
+			// map.put("code", "failed");
+			// map.put("msg", "您没有权限处理此请求");
 		}
 		return "team/team-joinrequest-manage";
 	}
@@ -139,14 +139,16 @@ public class TeamController {
 	@RequestMapping(value = "/handleJoinTeamRequest.do", method = RequestMethod.POST)
 	public Map<String, Object> handleJoinTeamRequest(HttpServletRequest request, String agree,
 			JoinTeamMsg joinTeamMsg) {
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		Boolean agree1 = Boolean.valueOf(agree);
 		String teamCreatorEmail = ((User) request.getSession().getAttribute("user")).getEmail();
-		
-		System.out.println("fromusername:"+joinTeamMsg.getFromusername()+" teamname:"+joinTeamMsg.getTeamname()+" teamCreatorEmail:"+teamCreatorEmail);
+		System.out.println(joinTeamMsg);
+		String teamID = String.valueOf(((Team) (request.getSession().getAttribute("loginteam"))).getTeamID());
+		System.out.println("fromusername:" + joinTeamMsg.getFromusername() + " teamname:" + joinTeamMsg.getTeamname()
+				+ " teamCreatorEmail:" + teamCreatorEmail);
 		boolean issuccess = teamService.handleJoinTeamRequest(teamCreatorEmail, joinTeamMsg.getFromusername(),
-				joinTeamMsg.getTeamname(), agree1);
+				joinTeamMsg.getTeamname(), agree1, teamID);
 		if (issuccess) {
 			map.put("code", "success");
 			map.put("msg", "已同意");

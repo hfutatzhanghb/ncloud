@@ -27,24 +27,13 @@ public class LoginController {
 			if (userjoinedTeam.getTeam() != null) {
 				request.getSession().setAttribute("loginteam", userjoinedTeam.getTeam().get(0));
 				request.getSession().setAttribute("teams", userjoinedTeam.getTeam());
+			}else {
+				request.getSession().setAttribute("loginteam", null);
+				request.getSession().setAttribute("teams", userjoinedTeam.getTeam());
 			}
 		}
 		return "team-manager";
 	}
 
-	@RequestMapping(value = "login1.do")
-	public String login1(HttpServletRequest request, @RequestParam(value = "email") String email,
-			@RequestParam(value = "password") String password) {
-
-		UserJoinTeamDTO userjoinedTeam = loginService.login(email, password);
-		if (userjoinedTeam != null) {
-			request.getSession().setAttribute("user", userjoinedTeam.getUser());
-			if (userjoinedTeam.getTeam() != null) {
-				request.getSession().setAttribute("loginteam", userjoinedTeam.getTeam().get(0));
-				request.getSession().setAttribute("teams", userjoinedTeam.getTeam());
-			}
-		}
-		return "hello";
-	}
 
 }

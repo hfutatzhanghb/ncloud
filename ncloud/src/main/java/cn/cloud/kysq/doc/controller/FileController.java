@@ -38,7 +38,7 @@ public class FileController {
 	// 此controller对应根root级的目录和文件请求
 	@RequestMapping(value = "/root.do")
 	public String getFirstLevelFile(HttpServletRequest request) {
-		String teamID =  String.valueOf(((Team)request.getSession().getAttribute("loginteam")).getTeamID());
+		String teamID = String.valueOf(((Team) request.getSession().getAttribute("loginteam")).getTeamID());
 		List<FileInfo> queryFirstLevelFiles = fileService.queryFirstLevelFiles(teamID);
 		request.setAttribute("fileList", queryFirstLevelFiles);
 		FileBreadCrumb fileBreadCrumb = new FileBreadCrumb();
@@ -50,23 +50,34 @@ public class FileController {
 		}
 		return "online-disk";
 	}
-	//对应创建文件夹的请求
-	@RequestMapping(value="createfolder.do",method = RequestMethod.POST)
-	public String createFolder(HttpServletRequest request ,@RequestParam("parentID") String parentID, @RequestParam("foldername")String foldername) {
+
+	@RequestMapping(value = "searchFiles.do")
+	public String searchFiles(HttpServletRequest request) {
+		Integer teamID = ((Team) request.getSession().getAttribute("loginteam")).getTeamID();
+		fileService.selectFilesByFileNameandTeamID(teamID,"需求分析.docx");
+		return null;
+	}
+
+	// 对应创建文件夹的请求
+	@RequestMapping(value = "createfolder.do", method = RequestMethod.POST)
+	public String createFolder(HttpServletRequest request, @RequestParam("parentID") String parentID,
+			@RequestParam("foldername") String foldername) {
 		FileInfo fileInfo = new FileInfo();
-		Integer teamID = ((Team)request.getSession().getAttribute("loginteam")).getTeamID();
-		String filePath = request.getSession().getServletContext().getRealPath("/WEB-INF/") + teamID+"\\"+foldername;
+		Integer teamID = ((Team) request.getSession().getAttribute("loginteam")).getTeamID();
+		String filePath = request.getSession().getServletContext().getRealPath("/WEB-INF/") + teamID + "\\"
+				+ foldername;
 		fileInfo.setFileName(foldername);
 		fileInfo.setFilePath(filePath);
-		fileInfo.setFileOwner(((User)request.getSession().getAttribute("user")).getUsername());
+		fileInfo.setFileOwner(((User) request.getSession().getAttribute("user")).getUsername());
 		fileInfo.setFileCreateTime(new Date());
 		System.out.println(parentID);
-		fileService.createFolder(fileInfo, (User)request.getSession().getAttribute("user"),(Team) request.getSession().getAttribute("loginteam"), parentID);
+		fileService.createFolder(fileInfo, (User) request.getSession().getAttribute("user"),
+				(Team) request.getSession().getAttribute("loginteam"), parentID);
 		System.out.println(parentID);
-		//return "online-disk";
+		// return "online-disk";
 		return "redirect:/doc/root.do";
 	}
-	
+
 	@RequestMapping(value = "/getsubfiles.do")
 	public String getSubFilesByFileID(HttpServletRequest request, @RequestParam(value = "fileID") String fileID,
 			@RequestParam(value = "curPath") String curpath, @RequestParam(value = "pathStr") String pathStr,
@@ -93,7 +104,7 @@ public class FileController {
 		}
 		return "online-disk";
 	}
-	
+
 	@RequestMapping(value = "uploadfile.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Integer> uploadfile(HttpServletRequest request, @RequestParam("parentID") String parentID,
@@ -113,7 +124,7 @@ public class FileController {
 		String realpath = parentPath + "\\" + file.getOriginalFilename();
 		Long filesize = file.getSize();
 		String fileOwner = ((User) request.getSession().getAttribute("user")).getUsername();
-		
+
 		Date now = new Date();
 		File newFile = new File(realpath);
 		try {
@@ -132,11 +143,11 @@ public class FileController {
 		}
 	}
 
-	@RequestMapping(value="/downloadfile.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/downloadfile.do", method = RequestMethod.POST)
 	public String downloadfile(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "team_id") String teamID, @RequestParam(value = "filename") String filename)
 			throws IOException {
-		request. setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		System.out.println(filename.length());
 		// 以团队名为文件夹单位
 		String folderName = teamID;
@@ -155,7 +166,7 @@ public class FileController {
 			// 输出缓冲区的内容到浏览器，实现文件下载
 			out.write(buffer, 0, len);
 		}
-		
+
 		// 关闭文件输入流
 		in.close();
 		out.flush();
@@ -163,7 +174,5 @@ public class FileController {
 		out.close();
 		return null;
 	}
-	
 
-	
 }
