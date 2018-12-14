@@ -54,7 +54,7 @@ public class TeamDao {
 	 * @return 插入成功返回true，否则返回false
 	 */
 	public boolean insertUserToTeam(User user, String teamName, String TeamID) {
-		String sql = "insert into user_team_relationship (username,useremail,teamname,teamID) values(?,?,?)";
+		String sql = "insert into user_team_relationship (username,useremail,teamname,teamID) values(?,?,?,?)";
 		int update = jdbctemplate.update(sql, new Object[] { user.getUsername(), user.getEmail(), teamName,TeamID });
 		if (update != 0) {
 			return true;
