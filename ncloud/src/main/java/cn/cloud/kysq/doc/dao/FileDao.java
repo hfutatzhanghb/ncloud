@@ -19,6 +19,7 @@ import cn.cloud.kysq.doc.entity.FileInfo;
 
 /**
  * 文档管理部分的Dao
+ * 
  * @author zhb
  *
  */
@@ -27,9 +28,10 @@ public class FileDao {
 
 	@Autowired
 	private JdbcTemplate jdbctemplate;
-	
+
 	/**
 	 * 根绝文件路径找到文件
+	 * 
 	 * @param filename
 	 * @return
 	 */
@@ -157,9 +159,10 @@ public class FileDao {
 			return query.get(0).getFileID();
 		}
 	}
-	
+
 	/**
 	 * 向文件关系表中插入一条记录。
+	 * 
 	 * @return
 	 */
 	public int insertFileRelationShip(Integer fileID, String fileName, String parentID) {
@@ -167,18 +170,40 @@ public class FileDao {
 		int update = jdbctemplate.update(sql, new Object[] { fileID, fileName, parentID });
 		return update;
 	}
-	
+
 	/**
 	 * 根据文件名在团队里进行模糊搜索
 	 */
-	public List<FileInfo> selectFilesByFileNameandTeamID(Integer teamID, String fileName){
+	public List<FileInfo> selectFilesByFileNameandTeamID(Integer teamID, String fileName) {
 		String teamid = String.valueOf(teamID);
-		String sql ="select * from file_detail where fileofTeam= ? and fileName = ?";
-		List<Map<String, Object>> queryForList = jdbctemplate.queryForList(sql, new Object[] {teamid,fileName});
+		String sql = "select * from file_detail where fileofTeam= ? and fileName = ?";
+		List<Map<String, Object>> queryForList = jdbctemplate.queryForList(sql, new Object[] { teamid, fileName });
 		Object json = JSON.toJSON(queryForList);
 		System.out.println(queryForList);
 		System.out.println(json);
 		return null;
 	}
 
+	public boolean deleteFromFileInfo(String fileID, String fileOwner) {
+		String sql = "delete from file_detail where fileID = ? and fileOwner = ? ";
+		try {
+			int update = jdbctemplate.update(sql, new Object[] { fileID, fileOwner });
+			return true;
+		} catch (Exception e) {
+			System.out.println("删除文件实体表出现异常");
+			return false;
+		}
+
+	}
+
+	public boolean deletefromFileRelationShip(String fileID) {
+		String sql = "delete from file_relationship where fileID= ?";
+		try {
+			jdbctemplate.update(sql, new Object[] { fileID });
+			return true;
+		} catch (Exception e) {
+			System.out.println("删除文件关系表出错");
+			return false;
+		}
+	}
 }

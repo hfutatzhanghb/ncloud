@@ -61,30 +61,14 @@
   <div id="wrapper">
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
-        <li>
-          <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#info"><i class="fa fa-fw fa-folder"></i>
-            个人信息
-            <i class="fa fa-fw fa-caret-down"></i></a>
-          <ul id="info" class="collapse in">
-            <li>
-              <a href="#" style="color:white"><i class="fa fa-fw fa-files-o"></i>&nbsp;登陆</a>
-            </li>
-            <li>
-              <a href="#" style="color:white"><i class="fa fa-fw fa-files-o"></i>&nbsp;注册</a>
-            </li>
-            <li>
-              <a href="#" style="color:white"><i class="fa fa-fw fa-files-o"></i>&nbsp;修改密码</a>
-            </li>
-            <li>
-              <a href="#" style="color:white"><i class="fa fa-fw fa-files-o"></i>&nbsp;退出</a>
-            </li>
-          </ul>
-        </li>
+
         <li>
           <a href="javascript:;" style="color:white"><i class="fa fa-fw fa-folder"></i>
             科研论坛
             </a>
         </li>
+        <li><a href="javascript:;" style="color: white"><i
+				class="fa fa-fw fa-folder"></i> 科研团队 </a></li>
         <li>
             <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team"><i class="fa fa-fw fa-folder"></i>
               团队空间

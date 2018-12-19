@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>团队管理</title>
+    <title>科研团队</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>/myresources/css/bootstrap.min.css" rel="stylesheet" />
@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
     <link href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
+    <link href="<%=basePath%>/myresources/css/bootstrap-table.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
 
@@ -66,11 +67,11 @@
               ><i class="fa fa-fw fa-folder"></i> 科研论坛
             </a>
           </li>
-
-		<li><a href="javascript:;" style="color: white"><i
+          
+          <li><a href="javascript:;" style="color: white"><i
 				class="fa fa-fw fa-folder"></i> 科研团队 </a></li>
-
-		<li>
+          
+          <li>
             <a
               href="javascript:;"
               style="color:white"
@@ -100,15 +101,9 @@
                   ><i class="fa fa-fw fa-envelope-o"></i> &nbsp;组内群聊</a
                 >
               </li>
-              
               <li>
                 <a href="javascript:;" style="color:white">
                 	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
-              </li>
-              <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-envelope-o"></i> &nbsp;团队概况</a
-                >
               </li>
               <li>
                 <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_manager_secondmenu"
@@ -121,7 +116,7 @@
                     >
                   </li>
 					<li>
-                    <a href="<%=basePath%>/team/getallJoinRequest.do" style="color:white"
+                    <a href="<%=basePath%>/team/" style="color:white"
                     ><i class="fa fa-fw fa-list"></i> &nbsp;申请处理</a
                     >
                   </li>
@@ -169,33 +164,28 @@
           <!-- 隐藏标签 ,判断是否进行Ajax轮询处理加入团队请求操作-->
           <input type="hidden" id= "id_forteam_creatorEmail" value="${loginteam.teamCreatorName}"/>
           <input type="hidden" id= "id_foruser_email" value="${user.email}"/>
-          
+          <input type="hidden" id= "id_forteam_name" value="${loginteam.teamName }">
           <div id="disappare" style="display:none;">
             <h2>切换成功</h2>
             <p>2秒后自动隐藏此内容</p>
           </div>
           
+          <div id="search-toolbar">
+					<div class="input-group">
+						<input type="text" name="teamname1" class="form-control typeahead" autocomplete="off"
+							placeholder="输入团队名" /> <span
+							class="input-group-btn">
+							<button class="btn btn-default" id="btn_searchteam" type="button">搜索
+							</button>
+						</span>
+					</div>
+          </div>
+          
           <!-- Three columns of text below the carousel -->
           <div class="row">
-            <div class="col-xs-1 col-md-2"></div>
-            <div class="panel panel-default col-xs-10 col-md-8 center">
-              <table class="table">
-                <tr>
-                  <th>团队名</th>
-                  <th>创建者邮箱</th>
-                  <th></th>
-                </tr>
-                
-                <c:forEach items="${teams}" var="iter_team" >
-                <tr>
-                	<td>${iter_team.teamName }</td>
-                	<td>${iter_team.teamCreatorName }</td>
-                	<td>
-                    <button type="button" class="btn btn-primary" onclick="changeTeam(this)">进入</button>
-                  </td>
-                </tr>
-                </c:forEach>
-              </table>
+            <div class="col-xs-1 col-md-1"></div>
+            <div class="  col-xs-10 col-md-10 center">
+              <table id="teamlisttable"></table>
             </div>
           </div>
           <!-- /.row -->
@@ -240,7 +230,7 @@
                           id="textinput"
                           name="teamName"
                           type="text"
-                          placeholder="输入团队名称"
+                          placeholder="输入团队名"
                           class="form-control input-md"
                           required=""
                         />
@@ -398,7 +388,13 @@
     <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
     <!-- AmaranJS Core -->
     <script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
+    
+	<!-- Bootstrap Table Core -->
+	<script src="<%=basePath%>/myresources/js/bootstrap-table.js"></script>
+	<script src="<%=basePath%>/myresources/js/bootstrap-table-zh-CN.js"></script>
     <!-- Customer JavaScript -->
-    <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
+    <script src="<%=basePath%>/myresources/js/research-group.js"></script>
+    <script src="<%=basePath%>/myresources/js/bootstrap3-typeahead.js"></script>
+
   </body>
 </html>

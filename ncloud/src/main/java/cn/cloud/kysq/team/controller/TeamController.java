@@ -60,7 +60,7 @@ public class TeamController {
 	@RequestMapping(value = "/changeteam.do", method = RequestMethod.POST)
 	public Map<String, String> changeteam(HttpServletRequest request, String distTeamname) {
 		// long starttime = System.currentTimeMillis();
-		Team team = teamService.getTeamByTeamName(distTeamname);
+		Team team = teamService.getTeamByTeamName1(distTeamname);
 		Map<String, String> map = new HashMap<String, String>();
 		if (team != null) {
 			map.put("status", "success");
@@ -74,24 +74,28 @@ public class TeamController {
 		return map;
 	}
 
-	// 对应搜索团队的请求
+	// 对应模糊搜索团队的请求
 	@ResponseBody
-	@RequestMapping(value = "/searchTeambyTeamName.do", method = RequestMethod.POST)
-	public Map<String, Object> searchTeamByTeamName(@RequestParam(value = "teamname") String teamname) {
+	@RequestMapping(value = "/searchTeambyBlurTeamName.do", method = RequestMethod.POST)
+	public Map<String, Object> searchTeamByBluerTeamName(@RequestParam(value = "teamname") String teamname) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println("teamname:  " + teamname);
-		Team team = teamService.getTeamByTeamName(teamname);
+		// Team team = teamService.getTeamByTeamName(teamname);
+		List<String> team = teamService.getTeamByBlurSearch(teamname);
+
 		if (team != null) {
 			map.put("code", "success");
-			map.put("team", team);
+			map.put("name", team);
 			return map;
 		} else {
-			map.put("code", "null");
-			map.put("team", null);
+			map.put("code", "failed");
+			map.put("name", "");
 			return map;
 		}
 
 	}
+	
+
 
 	// 对应用户申请加入团队的请求
 	@ResponseBody
@@ -111,6 +115,59 @@ public class TeamController {
 		return map;
 	}
 
+	// 对应用户申请加入团队的请求
+	@ResponseBody
+	@RequestMapping(value = "/applyJoinTeamRequest.do", method = RequestMethod.POST)
+	public Map<String, Object> applyJoinTeamRequest(HttpServletRequest request,
+			@RequestParam("tousername") String tousername, JoinTeamMsg joinTeamMsg) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String fromusername = ((User) request.getSession().getAttribute("user")).getUsername();
+		String touserEmail = teamService.getUserEmailByUserName(tousername);
+		joinTeamMsg.setTouseremail(touserEmail);
+		boolean issuccess = teamService.applyjoinTeam(fromusername, joinTeamMsg.getTouseremail(),
+				joinTeamMsg.getMsgcontent(), joinTeamMsg.getTeamname());
+		if (issuccess) {
+			map.put("code", "success");
+			map.put("msg", "申请加入成功");
+		} else {
+			map.put("code", "failed");
+			map.put("msg", "申请加入失败,网络错误或不能重复申请");
+		}
+		return map;
+	}
+
+	// 分页获得已经存在的科研团队
+	@ResponseBody
+	@RequestMapping(value = "/getexistedTeamListPagination.do",method = RequestMethod.GET)
+	public Object getexistedTeamListPagination(String currentpage, String pagesize) {
+		Integer pageNumber = currentpage == null ? -1 : Integer.parseInt(currentpage);
+		Integer pageSize = pagesize == null ? -1 : Integer.parseInt(pagesize);
+		Object teamListJson = teamService.getTeamListByPagination(pageNumber, pageSize);
+		System.out.println(teamListJson);
+		return teamListJson;
+	}
+	
+	
+	// 对应搜索团队的请求
+	@ResponseBody
+	@RequestMapping(value = "/searchTeambyTeamName.do", method = RequestMethod.POST)
+	public Object searchTeamByTeamName(@RequestParam(value = "teamname") String teamname) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("teamname:  " + teamname);
+		// Team team = teamService.getTeamByTeamName(teamname);
+		Object teamlistJSON = teamService.getTeamByTeamName(teamname);
+		System.out.println(teamlistJSON);
+		if (teamlistJSON != null) {
+			map.put("code", "success");
+			map.put("data", teamlistJSON);
+			return map;
+		} else {
+			map.put("code", "null");
+			map.put("data", null);
+			return map;
+		}
+
+	}
 	// 对应获得申请加入团队的请求列表
 	@RequestMapping(value = "/getallJoinRequest.do")
 	public String getallJoinRequest(HttpServletRequest request) {

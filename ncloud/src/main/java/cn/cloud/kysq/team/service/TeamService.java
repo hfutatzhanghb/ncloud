@@ -1,11 +1,17 @@
 package cn.cloud.kysq.team.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.cloud.kysq.login.dao.LoginDao;
 import cn.cloud.kysq.login.entity.User;
@@ -35,7 +41,7 @@ public class TeamService {
 	public boolean createTeam(User creator, Team team) {
 
 		boolean insertTeam = teamDao.insertTeam(creator, team);
-		Integer teamID = teamDao.selectTeamByTeamName(team.getTeamName()).getTeamID();
+		Integer teamID = (Integer)teamDao.selectTeamByTeamName(team.getTeamName()).get(0).get("team_ID");
 		String teamName = team.getTeamName();
 		boolean insertUserToTeam = teamDao.insertUserToTeam(creator, teamName, String.valueOf(teamID));
 		return insertTeam && insertUserToTeam;
@@ -88,9 +94,25 @@ public class TeamService {
 	/*
 	 * 通过团队名得到团队实体
 	 */
-	public Team getTeamByTeamName(String distTeamname) {
-		Team team = teamDao.selectTeamByTeamName(distTeamname);
-		return team;
+
+	/*
+	 * 通过团队名得到团队实体(用于bootstrap-table分页）
+	 */
+	public JSONObject getTeamByTeamName(String distTeamname) {
+		List<Map<String, Object>> teams=teamDao.selectTeamByTeamName(distTeamname);
+		Map<String, Object> map = new HashMap<>();
+		map.put("rows", teams);
+		map.put("total", 1);
+		return (JSONObject) JSON.toJSON(map);
+	}
+
+	/**
+	 * 通过模糊搜索团队名
+	 */
+	public List<String> getTeamByBlurSearch(String blurTeamname) {
+		List<String> teamnamelist = teamDao.selectTeamNameLike(blurTeamname);
+		return teamnamelist;
+
 	}
 
 	/**
@@ -134,6 +156,26 @@ public class TeamService {
 			System.out.println("此用户没有权限解散团队");
 			return false;
 		}
+	}
+
+	public String getUserEmailByUserName(String tousername) {
+		String userEmail = teamDao.selectEmailByUserName(tousername);
+		return userEmail;
+	}
+
+	public JSONObject getTeamListByPagination(Integer pageNumber, Integer pageSize) {
+		List<Map<String, Object>> teams = teamDao.selectTeamListByLimit(pageNumber, pageSize);
+		int totalrows = teamDao.SelectTeamCounts();
+		Map<String, Object> map = new HashMap<>();
+		map.put("rows", teams);
+		map.put("total", totalrows);
+		// System.out.println(map);
+		return (JSONObject) JSON.toJSON(map);
+	}
+
+	public Team getTeamByTeamName1(String distTeamname) {
+		Team selectTeamByTeamName1 = teamDao.selectTeamByTeamName1(distTeamname);
+		return selectTeamByTeamName1;
 	}
 
 }

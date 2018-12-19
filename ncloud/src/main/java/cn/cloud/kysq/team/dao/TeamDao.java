@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -55,7 +56,7 @@ public class TeamDao {
 	 */
 	public boolean insertUserToTeam(User user, String teamName, String TeamID) {
 		String sql = "insert into user_team_relationship (username,useremail,teamname,teamID) values(?,?,?,?)";
-		int update = jdbctemplate.update(sql, new Object[] { user.getUsername(), user.getEmail(), teamName,TeamID });
+		int update = jdbctemplate.update(sql, new Object[] { user.getUsername(), user.getEmail(), teamName, TeamID });
 		if (update != 0) {
 			return true;
 		} else {
@@ -121,7 +122,15 @@ public class TeamDao {
 	 *            Team名称
 	 * @return
 	 */
-	public Team selectTeamByTeamName(String distTeamname) {
+	public List<Map<String, Object>> selectTeamByTeamName(String distTeamname) {
+		String sql = "select * from team where team_name= ?";
+		List<Map<String, Object>> query = jdbctemplate.queryForList(sql, new Object[] { distTeamname });
+		return query;
+	}
+
+	
+	
+	public Team selectTeamByTeamName1(String distTeamname) {
 		String sql = "select * from team where team_name= ?";
 		List<Team> query = jdbctemplate.query(sql, new Object[] { distTeamname }, new TeamRowMapper());
 		if (query.isEmpty()) {
@@ -213,5 +222,32 @@ public class TeamDao {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public List<String> selectTeamNameLike(String blurTeamname) {
+		String sql = "select team_name from team where team_name like ?";
+		List<String> queryForList = jdbctemplate.queryForList(sql, new Object[] { "%" + blurTeamname + "%" },
+				String.class);
+		return queryForList;
+	}
+
+	public String selectEmailByUserName(String tousername) {
+		String sql = "select email from users where username = ?";
+		String userEmail = jdbctemplate.queryForObject(sql, new Object[] { tousername }, String.class);
+		return userEmail;
+	}
+
+	public List<Map<String, Object>> selectTeamListByLimit(Integer pageNumber, Integer pageSize) {
+		int start = (pageNumber - 1) * pageSize;
+		String sql = "select * from team limit ?,? ";
+		List<Map<String, Object>> queryForList = jdbctemplate.queryForList(sql, new Object[] { start, pageSize });
+		System.out.println(queryForList);
+		return queryForList;
+	}
+
+	public int SelectTeamCounts() {
+		String sql = "select count(*) from team";
+		int teamTotalCounts = jdbctemplate.queryForObject(sql, Integer.class);
+		return teamTotalCounts;
 	}
 }

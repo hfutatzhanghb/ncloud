@@ -121,4 +121,11 @@ public class FileService {
 		fileDao.selectFilesByFileNameandTeamID(teamID, string);
 	}
 
+	public boolean deleteFile(User currentUser, Team currentTeam, String fileName) {
+		String username = currentUser.getUsername();
+		Integer teamID = currentTeam.getTeamID();
+		fileDao.selectFilesByFileNameandTeamID(teamID, fileName);
+		return false;
+	}
+
 }
