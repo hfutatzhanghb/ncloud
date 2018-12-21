@@ -178,4 +178,9 @@ public class TeamService {
 		return selectTeamByTeamName1;
 	}
 
+	public boolean isUserInTeam(String fromusername, String teamname) {
+		boolean isUserinTema = teamDao.selectOneUserTeamRealtionship(fromusername,teamname);
+		return isUserinTema;
+	}
+
 }

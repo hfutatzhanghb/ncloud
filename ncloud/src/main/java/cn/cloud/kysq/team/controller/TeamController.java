@@ -93,8 +93,6 @@ public class TeamController {
 		}
 
 	}
-	
-
 
 	// 对应用户申请加入团队的请求
 	@ResponseBody
@@ -102,9 +100,10 @@ public class TeamController {
 	public Map<String, Object> applyJoinTeam(HttpServletRequest request, JoinTeamMsg joinTeamMsg) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String fromusername = ((User) request.getSession().getAttribute("user")).getUsername();
+		boolean isUserInTeam = teamService.isUserInTeam(fromusername, joinTeamMsg.getTeamname());
 		boolean issuccess = teamService.applyjoinTeam(fromusername, joinTeamMsg.getTouseremail(),
 				joinTeamMsg.getMsgcontent(), joinTeamMsg.getTeamname());
-		if (issuccess) {
+		if (issuccess && !isUserInTeam) {
 			map.put("code", "success");
 			map.put("msg", "申请加入成功");
 		} else {
@@ -137,7 +136,7 @@ public class TeamController {
 
 	// 分页获得已经存在的科研团队
 	@ResponseBody
-	@RequestMapping(value = "/getexistedTeamListPagination.do",method = RequestMethod.GET)
+	@RequestMapping(value = "/getexistedTeamListPagination.do", method = RequestMethod.GET)
 	public Object getexistedTeamListPagination(String currentpage, String pagesize) {
 		Integer pageNumber = currentpage == null ? -1 : Integer.parseInt(currentpage);
 		Integer pageSize = pagesize == null ? -1 : Integer.parseInt(pagesize);
@@ -145,8 +144,7 @@ public class TeamController {
 		System.out.println(teamListJson);
 		return teamListJson;
 	}
-	
-	
+
 	// 对应搜索团队的请求
 	@ResponseBody
 	@RequestMapping(value = "/searchTeambyTeamName.do", method = RequestMethod.POST)
@@ -167,6 +165,7 @@ public class TeamController {
 		}
 
 	}
+
 	// 对应获得申请加入团队的请求列表
 	@RequestMapping(value = "/getallJoinRequest.do")
 	public String getallJoinRequest(HttpServletRequest request) {

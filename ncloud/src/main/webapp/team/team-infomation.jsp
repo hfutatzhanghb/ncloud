@@ -155,32 +155,11 @@
           <input type="hidden" id= "id_forteam_creatorEmail" value="${loginteam.teamCreatorName}"/>
           <input type="hidden" id= "id_foruser_email" value="${user.email}"/>
           
-          <div id="disappare" style="display:none;">
-            <h2>切换成功</h2>
-            <p>2秒后自动隐藏此内容</p>
-          </div>
-          
           <!-- Three columns of text below the carousel -->
           <div class="row">
             <div class="col-xs-1 col-md-2"></div>
             <div class="panel panel-default col-xs-10 col-md-8 center">
-              <table class="table">
-                <tr>
-                  <th>团队名</th>
-                  <th>创建者邮箱</th>
-                  <th></th>
-                </tr>
-                
-                <c:forEach items="${teams}" var="iter_team" >
-                <tr>
-                	<td>${iter_team.teamName }</td>
-                	<td>${iter_team.teamCreatorName }</td>
-                	<td>
-                    <button type="button" class="btn btn-primary" onclick="changeTeam(this)">进入</button>
-                  </td>
-                </tr>
-                </c:forEach>
-              </table>
+
             </div>
           </div>
           <!-- /.row -->
