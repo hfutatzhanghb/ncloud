@@ -146,3 +146,40 @@ a:hover.breadlist {
   padding: 10px 15px 10px 58px;
   text-decoration: none;
 }
+
+.width80 {
+    width: 80%;
+    margin: 0px auto;
+    padding-top: 50px;
+}
+
+.infomation {
+    /*display: flex;*/
+    /*flex-direction: row;*/
+}
+
+.infomation_block {
+    /*flex:1 1 0;*/
+}
+
+.infomation_title {
+    font-size: 18px;
+    padding: 12px 18px 12px 18px;
+}
+
+.divider {
+    position: relative;
+    /*margin-top: 12px;*/
+    height: 1px;
+}
+
+.div-transparent:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, rgb(48, 49, 51), transparent);
+}
