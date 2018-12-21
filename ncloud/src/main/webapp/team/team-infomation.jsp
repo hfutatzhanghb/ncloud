@@ -156,13 +156,30 @@
           <input type="hidden" id= "id_foruser_email" value="${user.email}"/>
           
           <!-- Three columns of text below the carousel -->
-          <div class="row">
-            <div class="col-xs-1 col-md-2"></div>
-            <div class="panel panel-default col-xs-10 col-md-8 center">
 
-            </div>
-          </div>
           <!-- /.row -->
+
+          <div class="row infomation">
+            <div class="infomation_block">
+              <div class="infomation_title">通知公告</div>
+            </div>
+            <div class="divider div-transparent"></div>
+            <div class="infomation_block">
+              <div class="infomation_title">最近文档</div>
+            </div>
+            <div class="divider div-transparent"></div>
+
+            <div class="infomation_block">
+              <div class="infomation_title">新加入成员</div>
+            </div>
+            <div class="divider div-transparent"></div>
+
+            <div class="infomation_block">
+              <div class="infomation_title">当前任务</div>
+              
+            </div>
+
+          </div>
         </div>
         <!-- /.container-fluid -->
       </div>
