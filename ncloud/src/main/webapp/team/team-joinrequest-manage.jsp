@@ -102,6 +102,11 @@
                 	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
               </li>
               <li>
+                <a href="#" style="color:white"
+                  ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
+                >
+              </li>
+              <li>
                 <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_manager_secondmenu"
                   ><i class="fa fa-fw fa-cog"></i> &nbsp;团队管理<i class="fa fa-fw fa-caret-down"></i
                 ></a>

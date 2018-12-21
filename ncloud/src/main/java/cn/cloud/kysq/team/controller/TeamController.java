@@ -33,7 +33,6 @@ public class TeamController {
 	@RequestMapping(value = "/createteam.do")
 	public String createteam(HttpServletRequest request, Team team) {
 		User currentuser = (User) request.getSession().getAttribute("user");
-		System.out.println(team.getTeamName());
 		teamService.createTeam(currentuser, team);
 		List<Team> teamlist = teamService.getAllTeamsByUser(currentuser);
 		request.getSession().setAttribute("teams", teamlist);

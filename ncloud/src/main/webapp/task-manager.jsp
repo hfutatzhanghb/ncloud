@@ -100,6 +100,11 @@
                 >
               </li>
               <li>
+                <a href="#" style="color:white"
+                  ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
+                >
+              </li>
+              <li>
                 <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
                   ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a
                 >

@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>团队管理</title>
+    <title>团队概况</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>/myresources/css/bootstrap.min.css" rel="stylesheet" />
@@ -106,7 +106,7 @@
                 	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
               </li>
               <li>
-                <a href="<%=basePath%>/team/team-infomation.jsp" style="color:white"
+                <a href="#" style="color:white"
                   ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
                 >
               </li>
@@ -144,22 +144,7 @@
               <h1 class="page-header" style="height: 50px;margin-top: 10px;">
                 <div class="col-lg-6"><!-- /input-group --><span id="currentteam">当前团队 <span id="teamname">${loginteam.teamName }</span></span></div>
                 <!-- /.col-lg-6 -->
-                <button
-                  class="btn btn-primary pull-right"
-                  data-toggle="modal"
-                  data-target="#join_modal"
-                >
-                  <i class="fa fa-fw fa-plus"></i>&nbsp;加入团队
-                </button>
-                
-                <button
-                  class="btn btn-primary pull-right"
-                  style="margin-right:10px; "
-                  data-toggle="modal"
-                  data-target="#create_modal"
-                >
-                  <i class="fa fa-fw fa-cloud-upload"></i>&nbsp;创建团队
-                </button>
+               
               </h1>
             </div>
           </div>
@@ -205,192 +190,8 @@
 
       <!-- /#page-wrapper -->
     </div>
-    
     <!-- /#wrapper -->
-    <div
-      class="modal fade"
-      id="create_modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">创建团队</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="">
-                <form class="form-horizontal" id="createteamform" action="<%=basePath%>/team/createteam.do">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="textinput"
-                        >团队名称*</label>
-                      <div class="col-md-6">
-                        <input
-                          id="textinput"
-                          name="teamName"
-                          type="text"
-                          placeholder="输入团队名称"
-                          class="form-control input-md"
-                          required=""
-                        />
-                      </div>
-                    </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="select"
-                        >团队类别（领域或方向）</label
-                      >
-                      <div class="col-md-6">
-                        <select id="select" name="select" class="form-control">
-                          <option value="1">Option one</option>
-                          <option value="2">Option two</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Text input -->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="textinput"
-                        >所属单位</label
-                      >
-                      <div class="col-md-6">
-                        <input
-                          id="textinput"
-                          name="textinput"
-                          type="text"
-                          placeholder=""
-                          class="form-control input-md"
-                        />
-                      </div>
-                    </div>
-
-                    <!-- Textarea -->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="textarea"
-                        >简介</label
-                      >
-                      <div class="col-md-6">
-                        <textarea
-                          class="form-control"
-                          id="textarea"
-                          name="textarea"
-                        ></textarea>
-                      </div>
-                    </div>
-
-                    <!-- Button -->
-<!--                     <div class="form-group">
-                      <label
-                        class="col-md-4 control-label"
-                        for="singlebutton"
-                      ></label>
-                      <div class="col-md-6">
-                        <button
-                          id="singlebutton"
-                          name="singlebutton"
-                          class="btn btn-primary"
-                        >
-                          创建
-                        </button>
-                      </div>
-                    </div> -->
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" onclick="confirmCreateTeam()">创建</button>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="join_modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">加入团队</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div>
-                <div style="padding:12px;">
-                  <form class="form-horizontal">
-                    <fieldset>
-                      <!-- Form Name -->
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          name="teamname"
-                          class="form-control"
-                          placeholder="输入团队名"
-                        />
-                        <span class="input-group-btn">
-                          <button class="btn btn-default" id="btn_searchteam" type="button">搜索
-                          </button>
-                        </span>
-                      </div>
-                      <!-- /input-group -->
-                    </fieldset>
-                  </form>
-                </div>
-              </div>
-              <div style="padding:12px;">
-                <div class="panel panel-default">
-                  <table class="table" id="searchteam_table">
-<!--                     <tr>
-                      <th>团队名</th>
-                      <th>创建者</th>
-                      <th>操作</th>
-                    </tr>
-                    <tr>
-                      <td>团队1</td>
-                      <td>创建者1</td>
-                      <td>
-                        <button type="button" class="btn btn-primary">加入</button>
-                      </td>
-                    </tr> -->
-                  </table>
-                </div>
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cleardialog">关闭</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     
     <!-- jQuery -->
     <script src="<%=basePath%>/myresources/js/jquery.js"></script>
@@ -399,6 +200,6 @@
     <!-- AmaranJS Core -->
     <script src="<%=basePath%>/myresources/js/jquery.amaran.js"></script>
     <!-- Customer JavaScript -->
-    <script src="<%=basePath%>/myresources/js/team-manager.js"></script>
+    <script src="<%=basePath%>/myresources/js/team-information.js"></script>
   </body>
 </html>

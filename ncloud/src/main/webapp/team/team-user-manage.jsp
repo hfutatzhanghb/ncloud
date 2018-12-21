@@ -97,9 +97,15 @@
                   ><i class="fa fa-fw fa-envelope-o"></i> &nbsp;组内群聊</a
                 >
               </li>
+              
               <li>
                 <a href="javascript:;" style="color:white">
                 	<i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能 </a>
+              </li>
+              <li>
+                <a href="#" style="color:white"
+                  ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
+                >
               </li>
               <li>
                 <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_manager_secondmenu"

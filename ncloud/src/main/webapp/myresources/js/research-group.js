@@ -112,18 +112,18 @@ $(function() {
 		$.post(relativepath + "searchTeambyTeamName.do", {
 			teamname : $("input[name='teamname1']").val()
 		}, function(datas, status) {
-			if(datas.code=="success"){
-				$('#teamlisttable').bootstrapTable('load',datas.data);
-			}else if(datas.code=="null"){
+			if (datas.code == "success") {
+				$('#teamlisttable').bootstrapTable('load', datas.data);
+			} else if (datas.code == "null") {
 				$.amaran({
-				    content:{
-				        title:'通知',
-				        //message:'申请成功',
-				        message: "没有此团队信息",
-				        info:'',
-				        icon:'fa fa-warning'
-				    },
-				    theme:'awesome error'
+					content : {
+						title : '通知',
+						//message:'申请成功',
+						message : "没有此团队信息",
+						info : '',
+						icon : 'fa fa-warning'
+					},
+					theme : 'awesome error'
 				});
 			}
 

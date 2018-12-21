@@ -39,7 +39,7 @@ public class TeamDao {
 		String sql = "insert into team (team_name, team_creatorName, team_creatorTime, team_description, team_company) values(?,?,?,?,?) ";
 
 		Timestamp t = new Timestamp(new Date().getTime());
-		int update = jdbctemplate.update(sql, new Object[] { team.getTeamName(), creator.getEmail(), t,
+		int update = jdbctemplate.update(sql, new Object[] { team.getTeamName(), creator.getUsername(), t,
 				team.getTeamDescription(), team.getTeamCompany() });
 
 		if (update != 0) {
@@ -128,8 +128,6 @@ public class TeamDao {
 		return query;
 	}
 
-	
-	
 	public Team selectTeamByTeamName1(String distTeamname) {
 		String sql = "select * from team where team_name= ?";
 		List<Team> query = jdbctemplate.query(sql, new Object[] { distTeamname }, new TeamRowMapper());
