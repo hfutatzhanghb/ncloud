@@ -73,68 +73,89 @@
   </nav>
 
   <div id="wrapper">
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                    
-                    <li>
-                      <a href="javascript:;" style="color:white"><i class="fa fa-fw fa-folder"></i>
-                        科研论坛
-                        </a>
-                    </li>
-                    <li><a href="javascript:;" style="color: white"><i
-				class="fa fa-fw fa-folder"></i> 科研团队 </a></li>
-                    <li>
-                        <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team"><i class="fa fa-fw fa-folder"></i>
-                          团队空间
-                          <i class="fa fa-fw fa-caret-down"></i></a>
-                      <ul id="team" class="collapse in">
-                                     <li>
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+          
+          <li>
+            <a href="javascript:;" style="color:white"
+              ><i class="fa fa-fw fa-folder"></i> 科研论坛
+            </a>
+          </li>
+
+		<li>
+			<a href="<%=basePath%>/team/research-group.jsp" style="color: white"><i
+					class="fa fa-fw fa-folder"></i> 科研团队 </a>
+		</li>
+
+		<li>
+            <a
+              href="javascript:;"
+              style="color:white"
+              data-toggle="collapse"
+              data-target="#team"
+              ><i class="fa fa-fw fa-folder"></i> 团队空间
+              <i class="fa fa-fw fa-caret-down"></i
+            ></a>
+            <ul id="team" class="collapse in">
+              <li>
                 <a href="<%=basePath%>/doc/root.do" style="color:white"
-                  ><i class="fa fa-fw fa-files-o"></i> &nbsp;文档管理</a>
-                  
+                  ><i class="fa fa-fw fa-folder-o"></i> &nbsp;文档管理</a
+                >
               </li>
               <li>
-                <a href="<%=basePath%>task-manager.jsp" style="color:white"
-                  ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;任务协作</a
+                <a href="<%=basePath%>/task/task-manager.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-tasks"></i> &nbsp;任务协作</a
                 >
               </li>
               <li class="active">
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-audio-o"></i> &nbsp;视频会议</a
+                <a href="<%=basePath%>/meeting/videomeeting.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-video-camera"></i> &nbsp;视频会议</a
                 >
               </li>
               <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;通讯录</a
-                >
-              </li>
-              <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能</a
-                >
-              </li>
-              <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
-                >
-              </li>              
-              <li>
-                <a href="#" style="color:white"
+                <a href="<%=basePath%>/meeting/chating.jsp" style="color:white"
                   ><i class="fa fa-fw fa-envelope-o"></i> &nbsp;组内群聊</a
                 >
               </li>
+              
               <li>
-                <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a
+                <a href="<%=basePath%>/applied-function.jsp" style="color:white">
+                	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
+              </li>
+              <li>
+                <a href="<%=basePath%>/team/team-infomation.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
                 >
               </li>
-                      </ul>
-                    </li>
-                  </ul>
-    </div>
+              <li>
+                <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_manager_secondmenu"
+                  ><i class="fa fa-fw fa-cog"></i> &nbsp;团队管理<i class="fa fa-fw fa-caret-down"></i
+                ></a>
+                <ul id="team_manager_secondmenu" class="collapse in second_menu">
+                  <li>
+                    <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
+                    ><i class="fa fa-fw fa-exchange"></i> &nbsp;切换团队</a
+                    >
+                  </li>
+					<li>
+                    <a href="<%=basePath%>/team/getallJoinRequest.do" style="color:white"
+                    ><i class="fa fa-fw fa-list"></i> &nbsp;申请处理</a
+                    >
+                  </li>
+                  <li>
+                    <a href="<%=basePath%>/team/team-user-manage.jsp" style="color:white"
+                    ><i class="fa fa-fw fa-user"></i> &nbsp;成员管理</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
 
 		<!-- 上传文件对话框 -->
-		<div class="modal fade" id="upload-dialog">
+		<div class="modal fade" id="upload-dialog" >
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -147,8 +168,6 @@
 						<form action="<%=basePath%>/doc/uploadfile.do?"
 							id="uploadfileform"  class="dropzone"
 							enctype="multipart/form-data">
-
-							<!-- <input type="file" name="file" id="btn_file" multiple> -->
 							 
 						</form>
 						<!--style="display: none"  -->
@@ -156,7 +175,7 @@
 					<div class="modal-footer">
 						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
 						<button type="button" class="btn btn-default" onclick="closeUploadFileDialog()"> 关闭</button>
-						<button type="button" class="btn btn-default disabled" id ="submitbutton">上传</button>
+						<button type="button" class="btn btn-default" id ="submitbutton">上传</button>
 						
 					</div>
 				</div>

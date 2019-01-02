@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import cn.cloud.kysq.login.entity.User;
+import cn.cloud.kysq.task.entity.Project;
 import cn.cloud.kysq.team.entity.JoinTeamMsg;
 import cn.cloud.kysq.team.entity.Team;
 
@@ -28,6 +29,27 @@ public class TaskDao {
 
 	@Autowired
 	private JdbcTemplate jdbctemplate;
+	
+	/**
+	 * 向`task_project`表中插入一条数据，表示创建项目
+	 * @return
+	 */
+	public boolean insertProject(Project project, User creator, Team currteam) {
+		String sql = "insert into task_project(projectName, creatorEmail, creatorName, createDate, belongtoteamID, belongtoTeamName) values (?,?,?,?,?,?)";
+		Timestamp t = new Timestamp(new Date().getTime());
+		try {
+			int updateRows = jdbctemplate.update(sql, new Object[] { project.getProjectName(), creator.getEmail(),
+					creator.getUsername(), t, currteam.getTeamID(), currteam.getTeamName() });
+			if (updateRows!=0) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
 
 	/**
 	 * 插入一个团队，向`team`表中插入一条数据

@@ -3,6 +3,25 @@
  */
 $(function() {
 
+	Dropzone.options.uploadfileform = {
+		addRemoveLinks : true,
+		paramName : "file", // The name that will be used to transfer the file
+		maxFilesize : 2, // MB
+		autoProcessQueue : false, // 取消自动上传
+		removedfile : function(file) {
+			var _ref;
+			return (_ref = file.previewElement) != null ? _ref.parentNode
+					.removeChild(file.previewElement) : void 0;
+		},
+		init : function() {
+
+			myDropzone = this; // closure
+			$("#submitbutton").click(function() {
+				myDropzone.processQueue();
+			});
+		}
+	};
+
 	// 修改文件夹的链接地址
 	var pathStr = $("#forbreadcrumbpath").attr("value");
 	var idStr = $("#forbreadcrumbid").attr("value");
@@ -13,7 +32,7 @@ $(function() {
 						"href",
 						$(this).attr("href") + "&pathStr=" + pathStr
 								+ "&idStr=" + idStr);
-			})
+			});
 
 	var paths = pathStr.split(",");
 	var ids = idStr.split(",");
@@ -41,7 +60,7 @@ $(function() {
 										+ "&pathStr=" + pathStr_temp
 										+ "&idStr=" + idStr_temp);
 						// alert(paths[key+1]+":"+ids[key+1]);
-					})
+					});
 	// 修改上传文件表单的action的链接
 	$("#uploadfileform").attr(
 			"action",
@@ -51,7 +70,7 @@ $(function() {
 	// location.reload();
 });
 
-function Open_CreateFolderDialog(){
+function Open_CreateFolderDialog() {
 	$("#createfoldername").val("");
 	$("#createfolder-dialog").modal("toggle");
 }
@@ -64,21 +83,20 @@ function closeUploadFileDialog() {
 	location.reload();
 }
 
-function createFolder(){
+function createFolder() {
 	var input2 = $("<input>");
 	input2.attr("type", "hidden");
 	input2.attr("name", "parentID");
 	var ids = $("#forbreadcrumbid").attr("value").split(",");
-	input2.attr("value", ids[ids.length-1]);
-	//console.log(ids[ids.length-1]);
+	input2.attr("value", ids[ids.length - 1]);
+	// console.log(ids[ids.length-1]);
 	$("#createfolder_form").append(input2);
-	console.log ($("#createfolder_form"));
+	console.log($("#createfolder_form"));
 	// 提交表单
 	$("#createfolder_form").submit();
-	
-	//$("#createfolde_submitbutton")
-}
 
+	// $("#createfolde_submitbutton")
+}
 
 function downloadfile(obj) {
 	// alert($(this).parents("tr").children(":first").html());
@@ -99,9 +117,9 @@ function downloadfile(obj) {
 	input2.attr("name", "filename");
 	input2.attr("value", $(obj).parents("tr").children(":first").text().trim());
 
-	$("body").append(form);//将表单放置在web中
+	$("body").append(form);// 将表单放置在web中
 	form.append(input1);
 	form.append(input2);
-	form.submit();//表单提交 
+	form.submit();// 表单提交
 
 }

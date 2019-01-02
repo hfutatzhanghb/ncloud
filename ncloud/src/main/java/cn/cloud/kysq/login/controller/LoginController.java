@@ -11,7 +11,7 @@ import cn.cloud.kysq.login.service.LoginService;
 import cn.cloud.kysq.team.entity.UserJoinTeamDTO;
 
 @Controller
-@RequestMapping(value="/login")
+@RequestMapping(value = "/login")
 public class LoginController {
 
 	@Autowired
@@ -27,13 +27,16 @@ public class LoginController {
 			if (userjoinedTeam.getTeam() != null) {
 				request.getSession().setAttribute("loginteam", userjoinedTeam.getTeam().get(0));
 				request.getSession().setAttribute("teams", userjoinedTeam.getTeam());
-			}else {
+				return "team/team-infomation";
+
+			} else {
 				request.getSession().setAttribute("loginteam", null);
 				request.getSession().setAttribute("teams", userjoinedTeam.getTeam());
+				return "team/research-group";
 			}
+		} else {
+			return "";
 		}
-		return "team-manager";
 	}
-
 
 }

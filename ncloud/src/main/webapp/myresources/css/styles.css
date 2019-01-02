@@ -87,6 +87,23 @@ a:hover.breadlist {
   text-decoration: none;
 }
 
+a:link.dz-remove{
+	color: #333;
+	text-decoration:none;
+}
+
+a:visited.dz-remove{
+	color: #ccc;
+	text-decoration:none;
+}
+
+a:hover.dz-remove{
+	color: #555;
+	text-decoration:none;
+}
+
+
+
 .task-icon{
   padding: 4px;
   margin-top: 10px;
