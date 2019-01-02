@@ -334,6 +334,7 @@
 
   <!-- Bootstrap Core JavaScript -->
   <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+  <script src="<%=basePath%>/myresources/js/task-manager.js"></script>
   <script>
         let container = document.querySelector("#task_container2")
         //判断浏览器
