@@ -113,7 +113,7 @@ public class FileController {
 		// 以团队名为文件夹单位
 		String folderName = teamID;
 		// String filePath = FileStorage.getFileRealPath() + folderName;
-		String filePath = request.getSession().getServletContext().getRealPath("/WEB-INF/") + folderName;
+		String filePath = request.getSession().getServletContext().getRealPath("/WEB-INF/") +"\\"+ folderName;
 		System.out.println(filePath);
 		File parentPath = new File(filePath);
 
