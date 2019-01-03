@@ -23,6 +23,7 @@
     <link href="myresources/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
+
     <link href="myresources/css/sb-admin.css" rel="stylesheet" />
     <link href="myresources/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="myresources/css/exDemoTasks.css" />
@@ -42,6 +43,7 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <![endif]-->
   </head>
 
@@ -251,6 +253,7 @@
             <div class="form-group">
               <label for="project_desc" class="control-label">项目成员</label>
               <span class="glyphicon glyphicon-user task-icon"></span>
+              
             </div>
           </form>
         </div>
@@ -282,13 +285,18 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group"  data-toggle="modal" data-target="#member_modal">
                 <label for="project_desc" class="control-label">成员</label>
                 <span class="glyphicon glyphicon-user task-icon"></span>
+                <div class="member_list">
+                  <span class="member">1</span><span class="member">2</span><span class="member">3</span>
+                </div>
               </div>
               <div class="form-group">
                   <label for="project_desc" class="control-label">截止时间</label>
-                  <span class="glyphicon glyphicon-user task-icon"></span>
+                  <span class="glyphicon glyphicon-th"></span>
+                <input type="text" value="2019/09/01" class="form-control data-input">
+
                 </div>
             </form>
           </div>
@@ -301,12 +309,42 @@
         </div>
       </div>
     </div>
+  <div class="modal fade" id="member_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">项目成员</h4>
+        </div>
+        <div class="modal-body">
+          <label><input name="membercheck" type="checkbox" value="" />成员1 </label>
+          <label><input name="membercheck" type="checkbox" value="" />成员2 </label>
+          <label><input name="membercheck" type="checkbox" value="" />成员3 </label>
+          <label><input name="membercheck" type="checkbox" value="" />成员4 </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            取消
+          </button>
+          <button type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- jQuery -->
   <script src="myresources/js/jquery.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
   <script src="myresources/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
   <script>
+      $('.data-input').datepicker({
+          format: "yyyy/mm/dd"
+      });
         let container = document.querySelector("#task_container2")
         //判断浏览器
         let isIE = navigator.userAgent.match(/MSIE (\d)/i);
