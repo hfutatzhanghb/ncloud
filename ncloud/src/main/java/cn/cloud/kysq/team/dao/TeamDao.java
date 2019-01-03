@@ -248,4 +248,19 @@ public class TeamDao {
 		int teamTotalCounts = jdbctemplate.queryForObject(sql, Integer.class);
 		return teamTotalCounts;
 	}
+
+	/**
+	 * 判断一个用户是否在一个Team里
+	 * 
+	 * @return
+	 */
+	public boolean selectOneUserTeamRealtionship(String fromusername, String teamname) {
+		String sql = "select id from user_team_relationship where username = ? and teamname=? ";
+		Integer queryForInt = jdbctemplate.queryForObject(sql, new Object[] { fromusername, teamname }, Integer.class);
+		if (queryForInt == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

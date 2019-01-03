@@ -20,20 +20,19 @@
     <title>任务协作</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="myresources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=basePath%>/myresources/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
-
-    <link href="myresources/css/sb-admin.css" rel="stylesheet" />
-    <link href="myresources/css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="myresources/css/exDemoTasks.css" />
+    <link href="<%=basePath%>/myresources/css/sb-admin.css" rel="stylesheet" />
+    <link href="<%=basePath%>/myresources/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/exDemoTasks.css" />
     <link
-      href="myresources/font-awesome/css/font-awesome.min.css"
+      href="<%=basePath%>/myresources/font-awesome/css/font-awesome.min.css"
       rel="stylesheet"
       type="text/css"
     />
-    <link href="myresources/css/simple-sidebar.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="myresources/css/style.css" />
+    <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
 
     <!--
@@ -43,7 +42,6 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <![endif]-->
   </head>
 
@@ -61,60 +59,87 @@
   </nav>
 
   <div id="wrapper">
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav side-nav">
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
 
-        <li>
-          <a href="javascript:;" style="color:white"><i class="fa fa-fw fa-folder"></i>
-            科研论坛
+          <li>
+            <a href="javascript:;" style="color:white"
+              ><i class="fa fa-fw fa-folder"></i> 科研论坛
             </a>
-        </li>
-        <li><a href="javascript:;" style="color: white"><i
-				class="fa fa-fw fa-folder"></i> 科研团队 </a></li>
-        <li>
-            <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team"><i class="fa fa-fw fa-folder"></i>
-              团队空间
-              <i class="fa fa-fw fa-caret-down"></i></a>
-          <ul id="team" class="collapse in">
-                          <li>
+          </li>
+
+		<li>
+			<a href="<%=basePath%>/team/research-group.jsp" style="color: white"><i
+					class="fa fa-fw fa-folder"></i> 科研团队 </a>
+		</li>
+
+		<li>
+            <a
+              href="javascript:;"
+              style="color:white"
+              data-toggle="collapse"
+              data-target="#team"
+              ><i class="fa fa-fw fa-folder"></i> 团队空间
+              <i class="fa fa-fw fa-caret-down"></i
+            ></a>
+            <ul id="team" class="collapse in">
+              <li>
                 <a href="<%=basePath%>/doc/root.do" style="color:white"
-                  ><i class="fa fa-fw fa-files-o"></i> &nbsp;文档管理</a
+                  ><i class="fa fa-fw fa-folder-o"></i> &nbsp;文档管理</a
                 >
               </li>
               <li>
-                <a href="<%=basePath%>task-manager.jsp" style="color:white"
-                  ><i class="fa fa-fw fa-file-photo-o"></i> &nbsp;任务协作</a
+                <a href="<%=basePath%>/task/task-manager.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-tasks"></i> &nbsp;任务协作</a
                 >
               </li>
               <li class="active">
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-audio-o"></i> &nbsp;视频会议</a
+                <a href="<%=basePath%>/meeting/videomeeting.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-video-camera"></i> &nbsp;视频会议</a
                 >
               </li>
               <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;通讯录</a
+                <a href="<%=basePath%>/meeting/chating.jsp" style="color:white"
+                  ><i class="fa fa-fw fa-envelope-o"></i> &nbsp;组内群聊</a
                 >
               </li>
+
               <li>
-                <a href="#" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能</a
-                >
+                <a href="<%=basePath%>/applied-function.jsp" style="color:white">
+                	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
               </li>
               <li>
-                <a href="#" style="color:white"
+                <a href="<%=basePath%>/team/team-infomation.jsp" style="color:white"
                   ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
                 >
               </li>
               <li>
-                <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
-                  ><i class="fa fa-fw fa-file-video-o"></i> &nbsp;团队管理</a
-                >
+                <a href="javascript:;" style="color:white" data-toggle="collapse" data-target="#team_manager_secondmenu"
+                  ><i class="fa fa-fw fa-cog"></i> &nbsp;团队管理<i class="fa fa-fw fa-caret-down"></i
+                ></a>
+                <ul id="team_manager_secondmenu" class="collapse in second_menu">
+                  <li>
+                    <a href="<%=basePath%>/team/getuserjoinedteams.do" style="color:white"
+                    ><i class="fa fa-fw fa-exchange"></i> &nbsp;切换团队</a
+                    >
+                  </li>
+					<li>
+                    <a href="<%=basePath%>/team/getallJoinRequest.do" style="color:white"
+                    ><i class="fa fa-fw fa-list"></i> &nbsp;申请处理</a
+                    >
+                  </li>
+                  <li>
+                    <a href="<%=basePath%>/team/team-user-manage.jsp" style="color:white"
+                    ><i class="fa fa-fw fa-user"></i> &nbsp;成员管理</a
+                    >
+                  </li>
+                </ul>
               </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
     <div id="page-content-wrapper">
       <div class="task_bar">
           <div class="dropdown" style="display:inline-block">
@@ -253,7 +278,6 @@
             <div class="form-group">
               <label for="project_desc" class="control-label">项目成员</label>
               <span class="glyphicon glyphicon-user task-icon"></span>
-              
             </div>
           </form>
         </div>

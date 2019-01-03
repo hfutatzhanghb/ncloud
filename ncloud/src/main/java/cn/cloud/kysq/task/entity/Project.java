@@ -1,6 +1,5 @@
 package cn.cloud.kysq.task.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**

@@ -67,7 +67,13 @@
               ><i class="fa fa-fw fa-folder"></i> 科研论坛
             </a>
           </li>
-          <li>
+
+		<li>
+			<a href="<%=basePath%>/team/research-group.jsp" style="color: white"><i
+					class="fa fa-fw fa-folder"></i> 科研团队 </a>
+		</li>
+
+		<li>
             <a
               href="javascript:;"
               style="color:white"
@@ -83,27 +89,27 @@
                 >
               </li>
               <li>
-                <a href="<%=basePath%>task-manager.jsp" style="color:white"
+                <a href="<%=basePath%>/task/task-manager.jsp" style="color:white"
                   ><i class="fa fa-fw fa-tasks"></i> &nbsp;任务协作</a
                 >
               </li>
               <li class="active">
-                <a href="#" style="color:white"
+                <a href="<%=basePath%>/meeting/videomeeting.jsp" style="color:white"
                   ><i class="fa fa-fw fa-video-camera"></i> &nbsp;视频会议</a
                 >
               </li>
               <li>
-                <a href="#" style="color:white"
+                <a href="<%=basePath%>/meeting/chating.jsp" style="color:white"
                   ><i class="fa fa-fw fa-envelope-o"></i> &nbsp;组内群聊</a
                 >
               </li>
               
               <li>
-                <a href="javascript:;" style="color:white">
-                	<i class="fa fa-fw fa-file-video-o"></i> &nbsp;实用功能 </a>
+                <a href="<%=basePath%>/applied-function.jsp" style="color:white">
+                	<i class="fa fa-fw fa-star"></i> &nbsp;实用功能 </a>
               </li>
               <li>
-                <a href="#" style="color:white"
+                <a href="<%=basePath%>/team/team-infomation.jsp" style="color:white"
                   ><i class="fa fa-fw fa-info-circle"></i> &nbsp;团队概况</a
                 >
               </li>
@@ -118,12 +124,12 @@
                     >
                   </li>
 					<li>
-                    <a href="<%=basePath%>/team/" style="color:white"
+                    <a href="<%=basePath%>/team/getallJoinRequest.do" style="color:white"
                     ><i class="fa fa-fw fa-list"></i> &nbsp;申请处理</a
                     >
                   </li>
                   <li>
-                    <a href="<%=basePath%>/team/" style="color:white"
+                    <a href="<%=basePath%>/team/team-user-manage.jsp" style="color:white"
                     ><i class="fa fa-fw fa-user"></i> &nbsp;成员管理</a
                     >
                   </li>
