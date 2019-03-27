@@ -479,12 +479,12 @@
   </div>
 
   <!-- jQuery -->
-  <script src="myresources/js/jquery.js"></script>
+  <script src="<%=basePath%>/myresources/js/jquery.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="myresources/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+  <script src="<%=basePath%>/myresources/js/bootstrap.min.js"></script>
+  <script src="<%=basePath%>/myresources/js/bootstrap-datepicker.min.js"></script>
+  <script src="<%=basePath%>/myresources/js/bootstrap-datepicker.zh-CN.min.js"></script>
   <script>
       $('.item_span_stoppop').click(function (e) {
         e.stopPropagation();
