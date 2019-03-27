@@ -115,6 +115,7 @@ a:hover.dz-remove{
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+    justify-content: space-between;
 }
 
 .task_span{
@@ -199,4 +200,57 @@ a:hover.dz-remove{
     width: 90%;
     height: 1px;
     background-image: linear-gradient(to right, transparent, rgb(48, 49, 51), transparent);
+}
+input[type="checkbox"]:checked + span{
+    text-decoration:line-through;
+}
+.checkbox-label{
+    float: left;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0;
+}
+.checkbox-item{
+    padding: 10px;
+    vertical-align: middle;
+    /*display: flex;*/
+    /*justify-content:space-between;*/
+    /*align-items: center;*/
+}
+.checkbox-label + span{
+    margin-left: 20px;
+    display: inline-block;
+
+}
+.item_span{
+    font-size: 14px;
+    /* line-height: 50px; */
+    padding: 2px 5px 2px 5px;
+    margin: 0 12px;
+    float: right;
+    vertical-align: middle;
+    text-align:center;
+    margin-top:-4px;
+    /* cursor: pointer; */
+    /* background: #fff */
+    /* border:1px solid #fff;
+    border-radius: 5px;
+    background: #fff; */
+}
+.header_span{
+    font-size: 14px;
+    /* line-height: 50px; */
+    padding: 2px 5px 2px 5px;
+    margin: 0 12px;
+    float: right;
+    vertical-align: middle;
+    text-align:center;
+    /* cursor: pointer; */
+    /* background: #fff */
+    /* border:1px solid #fff;
+    border-radius: 5px;
+    background: #fff; */
+}
+.task_span_right{
+    float: right;
 }

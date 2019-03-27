@@ -34,7 +34,8 @@
     <link href="<%=basePath%>/myresources/css/simple-sidebar.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/myresources/css/style.css" />
     <!-- Custom Fonts -->
-
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!--
       HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     -->
@@ -142,6 +143,7 @@
 
     <div id="page-content-wrapper">
       <div class="task_bar">
+        <div>
           <div class="dropdown" style="display:inline-block">
             <span class="task_span btn btn-default" id="project_downmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">项目<i class="fa fa-fw fa-caret-down"></i></span>
             <ul class="dropdown-menu" aria-labelledby="project_downmenu">
@@ -152,17 +154,28 @@
         <span class="task_span btn btn-default" data-toggle="modal" data-target="#project_modal">创建项目</span>
         <span class="task_span btn btn-default">我参与的任务</span>
       </div>
+
+        <div>
+        <span class="task_span btn btn-default task_span_right">删除项目</span>
+        <span class="task_span btn btn-default task_span_right" data-toggle="modal" data-target="#project_modal_modify">项目详情</span>
+      </div>
+
+      </div>
       <div style="min-height: 660px; height: auto !important; height: 100%;">
         <div id="task_container">
           <div id="task_container2" style="display:flex;	overflow-x: auto;">
             <div class="task_tip ">
-              <h4>需求分析 <span></span></h4>
+              <h4>需求分析
+                  <span class="item_span btn btn-default" >删除</span>
+                  <span class="item_span btn btn-default" data-toggle="modal" data-target="#project_list_modal_modify">修改</span>
+              </h4>
               <div class="like_btn_control clearfix ">
                 <ul class="nav navbar-nav">
-                  <li><input type="checkbox" /></li>
-                  <li>
-                    <p>确定总体功能描述</p>
-                  </li>
+                  <div class="checkbox-item" data-toggle="modal" data-target="#mission_modal_modify">
+                    <input class="checkbox-label" type="checkbox" />
+                    <span>确定总体功能描述</span>
+                    <span class="item_span item_span_stoppop btn btn-default">删除</span>
+                  </div>
                 </ul>
                 <ul class="nav navbar-nav">
                   <li><input type="checkbox" /></li>
@@ -290,6 +303,87 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="project_modal_modify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">项目详情</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" style="padding:16px;">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="项目名称" />
+            </div>
+            <div class="form-group">
+              <label for="project_desc" class="control-label">项目描述</label>
+              <div class="controls">
+                <div class="textarea">
+                  <textarea class="form-control" rows="3" id="project_desc"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="project_desc" class="control-label">项目成员</label>
+              <span class="glyphicon glyphicon-user task-icon"></span>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            取消
+          </button>
+          <button type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="mission_modal_modify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">任务修改</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" style="padding:16px;">
+            <div class="form-group">
+              <label for="project_desc" class="control-label">任务描述</label>
+              <div class="controls">
+                <div class="textarea">
+                  <textarea class="form-control" rows="3" id="project_desc"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-group"  data-toggle="modal" data-target="#member_modal">
+              <label for="project_desc" class="control-label">成员</label>
+              <span class="glyphicon glyphicon-user task-icon"></span>
+              <div class="member_list">
+                <span class="member">1</span><span class="member">2</span><span class="member">3</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="project_desc" class="control-label">截止时间</label>
+              <span class="glyphicon glyphicon-th"></span>
+              <input type="text" value="2019/09/01" class="form-control data-input">
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            取消
+          </button>
+          <button type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="mission_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -358,6 +452,32 @@
     </div>
   </div>
 
+  <div class="modal fade" id="project_list_modal_modify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">修改任务列表</h4>
+              </div>
+              <div class="modal-body">
+                  <form class="form-horizontal" style="padding:16px;">
+                      <div class="form-group">
+                          <input type="text" class="form-control" placeholder="任务列表名称" />
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">
+                      取消
+                  </button>
+                  <button type="button" class="btn btn-primary">确定</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
   <!-- jQuery -->
   <script src="myresources/js/jquery.js"></script>
 
@@ -366,6 +486,12 @@
   <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
   <script>
+      $('.item_span_stoppop').click(function (e) {
+        e.stopPropagation();
+      })
+      $('.checkbox-label').click(function (e) {
+        e.stopPropagation();
+      })
       $('.data-input').datepicker({
           format: "yyyy/mm/dd"
       });
